@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-zinc-950 text-zinc-100;
+  }
+
+  ::selection {
+    @apply bg-orange-400/30 text-zinc-100;
+  }
+}
+
+@layer components {
+  /* Typography */
+  .heading-serif {
+    @apply font-serif font-bold tracking-tight;
+  }
+
+  /* Section label (eyebrow text above headings) */
+  .section-label {
+    @apply text-sm font-sans font-medium uppercase tracking-widest text-orange-400;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-orange-400 text-zinc-950 font-sans font-semibold
+           px-6 py-3 rounded-lg
+           transition-colors duration-200
+           hover:bg-orange-500
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+           border border-orange-400/50 text-orange-400 font-sans font-medium
+           px-6 py-3 rounded-lg
+           transition-colors duration-200
+           hover:border-orange-400 hover:bg-orange-400/10
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950;
+  }
+
+  /* Tag / chip (for tech stack, skills) */
+  .tag {
+    @apply inline-block font-mono text-xs
+           bg-zinc-800 text-zinc-300
+           px-2.5 py-1 rounded
+           border border-zinc-700/60;
+  }
+
+  /* Card surface */
+  .card {
+    @apply bg-zinc-900 border border-zinc-800 rounded-xl
+           transition-colors duration-200
+           hover:border-zinc-700;
+  }
+
+  /* Nav link */
+  .nav-link {
+    @apply text-zinc-400 text-sm font-medium
+           transition-colors duration-200
+           hover:text-zinc-100;
+  }
+
+  .nav-link-active {
+    @apply text-orange-400;
+  }
+}
