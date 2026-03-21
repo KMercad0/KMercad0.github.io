@@ -7,68 +7,76 @@
     scroll-behavior: smooth;
   }
 
-  body {
-    @apply bg-zinc-950 text-zinc-100;
-  }
-
   ::selection {
-    @apply bg-orange-400/30 text-zinc-100;
+    @apply bg-primary text-on-primary-fixed;
   }
 }
 
 @layer components {
-  /* Typography */
-  .heading-serif {
-    @apply font-serif font-bold tracking-tight;
+  /* Grid pattern background */
+  .grid-pattern {
+    background-image: radial-gradient(circle, rgba(255, 145, 87, 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 
-  /* Section label (eyebrow text above headings) */
+  /* Cotton glow effect */
+  .cotton-glow {
+    filter: drop-shadow(0 0 40px rgba(255, 145, 87, 0.15));
+  }
+
+  /* Typography */
+  .heading-serif {
+    @apply font-headline font-bold tracking-tighter;
+  }
+
+  .serif-italic {
+    @apply font-headline italic;
+  }
+
+  /* Section label (eyebrow text) */
   .section-label {
-    @apply text-sm font-sans font-medium uppercase tracking-widest text-orange-400;
+    @apply text-xs font-label uppercase tracking-[0.2em] text-primary;
   }
 
   /* Buttons */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2
-           bg-orange-400 text-zinc-950 font-sans font-semibold
-           px-6 py-3 rounded-lg
-           transition-colors duration-200
-           hover:bg-orange-500
-           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950;
+           bg-gradient-to-r from-primary to-primary-container
+           text-on-primary-fixed font-bold font-label
+           px-8 py-4 rounded-md
+           hover:scale-105 transition-transform;
   }
 
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2
-           border border-orange-400/50 text-orange-400 font-sans font-medium
-           px-6 py-3 rounded-lg
-           transition-colors duration-200
-           hover:border-orange-400 hover:bg-orange-400/10
-           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950;
+           border border-outline-variant/20 text-on-surface font-bold
+           px-8 py-4 rounded-md
+           hover:bg-surface-container-low transition-colors;
   }
 
-  /* Tag / chip (for tech stack, skills) */
+  /* Tag / chip (tech stack) */
   .tag {
-    @apply inline-block font-mono text-xs
-           bg-zinc-800 text-zinc-300
-           px-2.5 py-1 rounded
-           border border-zinc-700/60;
+    @apply inline-block font-label text-[0.7rem]
+           bg-surface-variant text-on-surface-variant
+           px-3 py-1 rounded-sm
+           uppercase tracking-wider;
   }
 
-  /* Card surface */
+  /* Card surface — ghost border style */
   .card {
-    @apply bg-zinc-900 border border-zinc-800 rounded-xl
-           transition-colors duration-200
-           hover:border-zinc-700;
+    @apply bg-surface-container-high border border-outline-variant/20 rounded-xl
+           transition-all duration-500
+           hover:border-outline-variant/50;
   }
 
   /* Nav link */
   .nav-link {
-    @apply text-zinc-400 text-sm font-medium
-           transition-colors duration-200
-           hover:text-zinc-100;
+    @apply text-white/70 text-sm font-label uppercase tracking-widest
+           transition-all duration-200
+           hover:text-primary;
   }
 
   .nav-link-active {
-    @apply text-orange-400;
+    @apply text-primary font-bold border-b-2 border-primary pb-1;
   }
 }

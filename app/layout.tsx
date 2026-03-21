@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-import { Fraunces, Space_Grotesk, JetBrains_Mono } from 'next/font/google'
+import { Newsreader, Space_Grotesk, JetBrains_Mono } from 'next/font/google'
 import { Providers } from './providers'
 import './globals.css'
 
-const fraunces = Fraunces({
+const newsreader = Newsreader({
   subsets: ['latin'],
-  variable: '--font-fraunces',
+  variable: '--font-newsreader',
   display: 'swap',
   style: ['normal', 'italic'],
   fallback: ['Georgia', 'serif'],
@@ -27,13 +27,13 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Karl Mercado — Software Developer',
+  title: 'ENIGMA | Karl Mercado — Software Developer',
   description:
     'Full-stack developer and fresh CS graduate from UPLB. Building modern, user-focused applications.',
   keywords:
     'developer, portfolio, software engineer, web development, full-stack, React, Next.js, UPLB',
   openGraph: {
-    title: 'Karl Mercado — Software Developer',
+    title: 'ENIGMA | Karl Mercado — Software Developer',
     description:
       'Full-stack developer and fresh CS graduate from UPLB. Building modern, user-focused applications.',
     type: 'website',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Karl Mercado — Software Developer',
+    title: 'ENIGMA | Karl Mercado — Software Developer',
     description: 'Full-stack developer and fresh CS graduate from UPLB.',
   },
 }
@@ -54,9 +54,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`dark ${newsreader.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="bg-zinc-950 text-zinc-100 antialiased font-sans">
+      <body className="bg-background text-on-surface antialiased font-body selection:bg-primary selection:text-on-primary-fixed overflow-x-hidden">
         <Providers>{children}</Providers>
       </body>
     </html>

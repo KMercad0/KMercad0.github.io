@@ -4,95 +4,69 @@ import { m } from 'motion/react'
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-24 border-t border-zinc-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-
-          {/* Left: text */}
-          <m.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            viewport={{ once: true, amount: 0.4 }}
-            className="space-y-6"
-          >
-            <p className="section-label">Contact</p>
-            <h2 className="heading-serif text-4xl sm:text-5xl text-zinc-100 leading-tight">
-              Let&apos;s talk about{' '}
-              <span className="text-orange-400 italic">what you need.</span>
-            </h2>
-            <p className="text-zinc-400 leading-relaxed max-w-md">
-              I&apos;m actively looking for full-time roles. If you&apos;re building something
-              interesting and think I could contribute, I&apos;d love to hear from you.
-              No hard pitch — just an honest conversation.
-            </p>
-
-            <div className="space-y-3 text-sm text-zinc-500">
-              <p>Open to remote and hybrid positions</p>
-              <p>Available immediately</p>
-              <p>Willing to relocate for the right role</p>
-            </div>
-
-            <a
-              href="mailto:komercado31@gmail.com?subject=Let%27s%20Talk&body=Hi%20Karl%2C%0A%0A"
-              className="btn-primary inline-flex"
-            >
-              Send me an email
-            </a>
-
-            <div className="flex gap-6 pt-2">
-              <a
-                href="https://github.com/KMercad0"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-zinc-500 hover:text-zinc-100 text-sm transition-colors duration-200"
-              >
-                GitHub
-              </a>
-              <a
-                href="https://www.linkedin.com/in/kmercad0"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-zinc-500 hover:text-zinc-100 text-sm transition-colors duration-200"
-              >
-                LinkedIn
-              </a>
-              <a
-                href="mailto:komercado31@gmail.com"
-                className="text-zinc-500 hover:text-zinc-100 text-sm transition-colors duration-200"
-              >
-                komercado31@gmail.com
-              </a>
-            </div>
-          </m.div>
-
-          {/* Right: Cotton photo */}
-          <m.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
-            viewport={{ once: true, amount: 0.4 }}
-            className="space-y-3"
-          >
-            <div className="relative rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800 aspect-[4/3]">
-              <img
-                src="/images/c3.png"
-                alt="Cotton"
-                width={600}
-                height={450}
-                loading="lazy"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent" />
-            </div>
-            <p className="text-xs font-mono text-zinc-600 text-center">
-              Cotton also thinks you should reach out.
-            </p>
-          </m.div>
-
+    <section id="contact" className="py-32 px-8 max-w-screen-2xl mx-auto">
+      <m.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="bg-surface-container-lowest rounded-2xl p-12 md:p-24 relative overflow-hidden"
+      >
+        {/* Ambient glow */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary rounded-full blur-[160px]" />
         </div>
-      </div>
+
+        <div className="relative z-10 flex flex-col items-center text-center max-w-2xl mx-auto">
+          {/* Cotton */}
+          <div className="w-32 h-32 bg-white rounded-full mb-8 overflow-hidden border-4 border-surface-container-high shadow-xl shadow-black">
+            <img
+              src="/images/c3.png"
+              alt="Cotton"
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Speech bubble */}
+          <div className="bg-surface-container-highest text-white/90 font-label text-sm px-4 py-2 rounded-lg mb-8 relative">
+            &quot;Waiting for the next big build.&quot;
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-surface-container-highest rotate-45" />
+          </div>
+
+          <h2 className="heading-serif text-5xl md:text-6xl mb-8 leading-tight">
+            Ready to start something <span className="serif-italic">impactful</span>?
+          </h2>
+
+          <a
+            href="mailto:komercado31@gmail.com?subject=Let%27s%20Talk&body=Hi%20Karl%2C%0A%0A"
+            className="inline-flex items-center gap-6 group mb-8"
+          >
+            <span className="text-2xl md:text-3xl font-headline border-b-2 border-primary pb-2 group-hover:pr-8 transition-all duration-300">
+              komercado31@gmail.com
+            </span>
+          </a>
+
+          <div className="flex gap-8 mt-4">
+            <a
+              href="https://github.com/KMercad0"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/40 hover:text-white transition-colors duration-300 font-label text-xs uppercase tracking-widest"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/kmercad0"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/40 hover:text-white transition-colors duration-300 font-label text-xs uppercase tracking-widest"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </m.div>
     </section>
   )
 }
