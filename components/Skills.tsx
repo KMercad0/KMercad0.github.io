@@ -35,8 +35,8 @@ const categories = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-32">
-      <div className="px-8 max-w-screen-2xl mx-auto">
+    <section id="skills" className="py-20 sm:py-32">
+      <div className="px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
       <m.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -47,7 +47,7 @@ const Skills = () => {
         <span className="section-label mb-2 block">// Skills</span>
       </m.div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {categories.map((cat, i) => (
           <m.div
             key={cat.label}
@@ -55,7 +55,7 @@ const Skills = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut', delay: i * 0.08 }}
             viewport={{ once: true, amount: 0.4 }}
-            className="card p-6 space-y-4"
+            className="card p-4 sm:p-6 space-y-4"
           >
             <h3 className="text-xs font-label text-primary uppercase tracking-[0.2em]">
               {cat.label}

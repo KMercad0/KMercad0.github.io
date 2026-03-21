@@ -11,8 +11,8 @@ const photos = [
 
 const Cotton = () => {
   return (
-    <section id="cotton" className="py-32">
-      <div className="px-8 max-w-screen-2xl mx-auto">
+    <section id="cotton" className="py-20 sm:py-32">
+      <div className="px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
       <m.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -21,7 +21,7 @@ const Cotton = () => {
         className="mb-12 space-y-4"
       >
         <span className="section-label block">// cotton</span>
-        <h2 className="heading-serif text-4xl sm:text-5xl text-on-surface leading-tight">
+        <h2 className="heading-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-on-surface leading-tight">
           Chief Morale{' '}
           <span className="serif-italic text-primary">Officer.</span>
         </h2>

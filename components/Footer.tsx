@@ -2,8 +2,8 @@
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0e0e0e] w-full py-12 border-t border-white/5">
-      <div className="flex flex-col md:flex-row justify-between items-center px-8 max-w-screen-2xl mx-auto gap-4">
+    <footer className="bg-[#0e0e0e] w-full py-8 sm:py-12 border-t border-white/5">
+      <div className="flex flex-col md:flex-row justify-between items-center px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto gap-4">
         <div className="text-white/40 font-body text-[0.75rem] uppercase tracking-widest">
           Made by Karl Mercado &bull;{' '}
           <span className="serif-italic lowercase">Cotton the Chief Greeter says hello.</span>

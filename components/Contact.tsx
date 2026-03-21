@@ -4,17 +4,17 @@ import { m } from 'motion/react'
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-32 px-8 max-w-screen-2xl mx-auto">
+    <section id="contact" className="py-20 sm:py-32 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
       <m.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         viewport={{ once: true, amount: 0.3 }}
-        className="bg-surface-container-lowest rounded-2xl p-12 md:p-24 relative overflow-hidden"
+        className="bg-surface-container-lowest rounded-2xl p-6 sm:p-8 md:p-12 lg:p-24 relative overflow-hidden"
       >
         {/* Ambient glow */}
         <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary rounded-full blur-[160px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] bg-primary rounded-full blur-[100px] sm:blur-[160px]" />
         </div>
 
         <div className="relative z-10 flex flex-col items-center text-center max-w-2xl mx-auto">
@@ -37,7 +37,7 @@ const Contact = () => {
 
      
 
-          <h2 className="heading-serif text-5xl md:text-6xl mb-8 leading-tight">
+          <h2 className="heading-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 sm:mb-8 leading-tight">
             Hit me <span className="serif-italic">up!</span>?
           </h2>
 
@@ -45,7 +45,7 @@ const Contact = () => {
             href="mailto:komercado31@gmail.com?subject=Let%27s%20Talk&body=Hi%20Karl%2C%0A%0A"
             className="inline-flex items-center gap-6 group mb-8"
           >
-            <span className="text-2xl md:text-3xl font-headline border-b-2 border-primary pb-2 group-hover:pr-8 transition-all duration-300">
+            <span className="text-base sm:text-xl md:text-2xl lg:text-3xl font-headline border-b-2 border-primary pb-2 group-hover:pr-8 transition-all duration-300 break-all sm:break-normal">
               komercado31@gmail.com
             </span>
           </a>

@@ -15,11 +15,11 @@ const Hero = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center pt-16 overflow-hidden">
       {/* Subtle orange radial glow background */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-primary/[0.04] rounded-full blur-[200px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-primary/[0.03] rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] sm:w-[600px] md:w-[800px] h-[300px] sm:h-[400px] md:h-[600px] bg-primary/[0.04] rounded-full blur-[120px] sm:blur-[200px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] bg-primary/[0.03] rounded-full blur-[100px] sm:blur-[150px] pointer-events-none" />
 
-      <div className="max-w-screen-2xl mx-auto px-8 w-full py-20">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 w-full py-10 sm:py-16 md:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
 
           {/* Left column */}
           <div className="md:col-span-7 flex flex-col items-start">
@@ -29,7 +29,7 @@ const Hero = () => {
               initial="hidden"
               animate="show"
               custom={0.15}
-              className="font-headline text-4xl md:text-5xl lg:text-6xl text-on-surface leading-[1.1] tracking-tighter font-bold"
+              className="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-on-surface leading-[1.1] tracking-tighter font-bold"
             >
               &ldquo;The inner{' '}
               <span className="italic text-primary">machinations</span>{' '}
@@ -51,9 +51,9 @@ const Hero = () => {
               initial="hidden"
               animate="show"
               custom={0.25}
-              className="mt-6 space-y-1 text-lg text-on-surface-variant leading-relaxed max-w-lg"
+              className="mt-4 sm:mt-6 space-y-1 text-base sm:text-lg text-on-surface-variant leading-relaxed max-w-lg"
             >
-              <p className="text-2xl sm:text-3xl text-on-surface font-semibold">Hi, I&apos;m Karl.</p>
+              <p className="text-xl sm:text-2xl md:text-3xl text-on-surface font-semibold">Hi, I&apos;m Karl.</p>
               <p>I build things, learn things, and break things.</p>
             </m.div>
 
@@ -63,7 +63,7 @@ const Hero = () => {
               initial="hidden"
               animate="show"
               custom={0.35}
-              className="mt-6 flex flex-wrap gap-4"
+              className="mt-4 sm:mt-6 flex flex-wrap gap-3 sm:gap-4"
             >
               <a href="#projects" className="btn-primary">
                 View Projects
@@ -79,7 +79,7 @@ const Hero = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
               viewport={{ once: true, amount: 0.3 }}
-              className="mt-6 max-w-3xl space-y-4 text-on-surface-variant leading-relaxed text-base sm:text-lg"
+              className="mt-4 sm:mt-6 max-w-3xl space-y-3 sm:space-y-4 text-on-surface-variant leading-relaxed text-sm sm:text-base md:text-lg"
             >
               <p>
                 Been on the Computer ever since childhood.
@@ -129,7 +129,7 @@ const Hero = () => {
             initial="hidden"
             animate="show"
             custom={0}
-            className="md:col-span-5 flex justify-center md:justify-center relative mt-4 md:mt-[30px]"
+            className="md:col-span-5 flex justify-center md:justify-center relative mt-10 md:mt-[30px] pt-6 md:pt-0"
           >
             {/* Ambient glow */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -147,7 +147,7 @@ const Hero = () => {
 
               {/* Cotton photo in rotated frame */}
               <div className="bg-surface-container-lowest p-2 rounded-xl transform rotate-3 shadow-2xl shadow-black/50">
-                <div className="w-80 h-[22rem] sm:w-[22rem] sm:h-[26rem] rounded-lg overflow-hidden">
+                <div className="w-56 h-64 sm:w-72 sm:h-80 md:w-80 md:h-[22rem] lg:w-[22rem] lg:h-[26rem] rounded-lg overflow-hidden">
                   <img
                     src="/images/c1.png"
                     alt="Cotton"

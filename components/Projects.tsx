@@ -122,7 +122,7 @@ const ProjectCard = ({
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.08 }}
     viewport={{ once: true, amount: 0.3 }}
-    className={`${project.span === 8 ? 'md:col-span-8' : 'md:col-span-4'} group relative overflow-hidden card p-8 flex flex-col min-h-[320px]`}
+    className={`${project.span === 8 ? 'md:col-span-8' : 'md:col-span-4'} group relative overflow-hidden card p-4 sm:p-6 md:p-8 flex flex-col min-h-[280px] sm:min-h-[320px]`}
   >
     {/* Full background image */}
     {project.image && (
@@ -147,7 +147,7 @@ const ProjectCard = ({
     <div className="relative z-10 flex flex-col h-full">
       <div className="mb-8">
         <span className="section-label mb-2 block">{project.label}</span>
-        <h3 className={`heading-serif ${index === 0 ? 'text-4xl' : 'text-3xl'} mb-2`}>
+        <h3 className={`heading-serif ${index === 0 ? 'text-2xl sm:text-3xl md:text-4xl' : 'text-xl sm:text-2xl md:text-3xl'} mb-2`}>
           {project.title}
         </h3>
         {/* Cotton's Pick badge — inline below title */}
@@ -228,7 +228,7 @@ const AcademicCard = ({
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.08 }}
     viewport={{ once: true, amount: 0.3 }}
-    className="group relative overflow-hidden card p-6 flex flex-col min-h-[260px]"
+    className="group relative overflow-hidden card p-4 sm:p-6 flex flex-col min-h-[240px] sm:min-h-[260px]"
   >
     {/* Full background image */}
     {project.image && (
@@ -283,8 +283,8 @@ const Projects = () => {
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
 
   return (
-    <section id="projects" className="py-32">
-      <div className="px-8 max-w-screen-2xl mx-auto">
+    <section id="projects" className="py-20 sm:py-32">
+      <div className="px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
         {/* Header */}
         <m.header
           initial={{ opacity: 0, y: 24 }}

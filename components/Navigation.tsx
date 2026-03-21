@@ -26,7 +26,7 @@ const Navigation = () => {
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-[#0e0e0e]/80 backdrop-blur-xl">
-      <div className="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
+      <div className="flex justify-between items-center px-4 sm:px-6 md:px-8 py-3 sm:py-4 max-w-screen-2xl mx-auto">
         {/* Logo */}
         <button
           onClick={() => scrollTo('hero')}
@@ -74,7 +74,7 @@ const Navigation = () => {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden bg-[#0e0e0e]/95 backdrop-blur-xl border-b border-white/5">
-          <div className="max-w-screen-2xl mx-auto px-8 py-4 flex flex-col gap-1">
+          <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 py-4 flex flex-col gap-1">
             {links.map((link) => (
               <button
                 key={link.id}

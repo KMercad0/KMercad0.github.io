@@ -5,7 +5,7 @@ import { m } from 'motion/react'
 const Education = () => {
   return (
     <section id="education" className="py-20 bg-surface-container-low">
-      <div className="px-8 max-w-screen-2xl mx-auto">
+      <div className="px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
       <m.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -17,7 +17,7 @@ const Education = () => {
           href="https://uplb.edu.ph"
           target="_blank"
           rel="noopener noreferrer"
-          className="card bg-surface-container-lowest px-8 py-6 flex items-center gap-6 hover:border-primary/40 transition-colors duration-200 group"
+          className="card bg-surface-container-lowest px-4 sm:px-6 md:px-8 py-4 sm:py-6 flex items-center gap-4 sm:gap-6 hover:border-primary/40 transition-colors duration-200 group"
         >
           <div className="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center shrink-0 text-primary">
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

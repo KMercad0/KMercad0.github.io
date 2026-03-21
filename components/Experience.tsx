@@ -34,8 +34,8 @@ const entries = [
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-32 bg-surface-container-low">
-      <div className="px-8 max-w-screen-2xl mx-auto">
+    <section id="experience" className="py-20 sm:py-32 bg-surface-container-low">
+      <div className="px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
       <m.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -55,7 +55,7 @@ const Experience = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut', delay: i * 0.1 }}
             viewport={{ once: true, amount: 0.3 }}
-            className="card p-8 group"
+            className="card p-4 sm:p-6 md:p-8 group"
           >
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-6">
               <div>

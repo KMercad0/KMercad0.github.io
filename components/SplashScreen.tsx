@@ -87,7 +87,7 @@ const SplashScreen = () => {
             initial={{ opacity: 0 }}
             animate={showButton ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="mt-10"
+            className="mt-6 sm:mt-8 md:mt-10"
           >
             <button
               onClick={handleEnter}
