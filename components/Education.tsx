@@ -4,7 +4,8 @@ import { m } from 'motion/react'
 
 const Education = () => {
   return (
-    <section id="education" className="py-20 px-8 max-w-screen-2xl mx-auto">
+    <section id="education" className="py-20 bg-surface-container-low">
+      <div className="px-8 max-w-screen-2xl mx-auto">
       <m.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -16,7 +17,7 @@ const Education = () => {
           href="https://uplb.edu.ph"
           target="_blank"
           rel="noopener noreferrer"
-          className="card px-8 py-6 flex items-center gap-6 hover:border-primary/40 transition-colors duration-200 group"
+          className="card bg-surface-container-lowest px-8 py-6 flex items-center gap-6 hover:border-primary/40 transition-colors duration-200 group"
         >
           <div className="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center shrink-0 text-primary">
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -28,7 +29,7 @@ const Education = () => {
               University of the Philippines Los Ba&ntilde;os
             </p>
             <p className="text-sm text-on-surface-variant font-label mt-1">
-              BS Computer Science &middot; 2019&ndash;2026
+              BS Computer Science &middot; 2019&ndash;2025
             </p>
           </div>
           <svg className="w-5 h-5 text-on-surface-variant/40 group-hover:text-primary/60 transition-colors duration-200 ml-auto shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -36,6 +37,7 @@ const Education = () => {
           </svg>
         </a>
       </m.div>
+      </div>
     </section>
   )
 }

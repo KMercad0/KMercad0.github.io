@@ -35,7 +35,8 @@ const categories = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-32 px-8 max-w-screen-2xl mx-auto bg-surface-container-low">
+    <section id="skills" className="py-32">
+      <div className="px-8 max-w-screen-2xl mx-auto">
       <m.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -66,6 +67,7 @@ const Skills = () => {
             </div>
           </m.div>
         ))}
+      </div>
       </div>
     </section>
   )

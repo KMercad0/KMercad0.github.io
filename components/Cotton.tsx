@@ -11,7 +11,8 @@ const photos = [
 
 const Cotton = () => {
   return (
-    <section id="cotton" className="py-32 px-8 max-w-screen-2xl mx-auto">
+    <section id="cotton" className="py-32">
+      <div className="px-8 max-w-screen-2xl mx-auto">
       <m.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -55,6 +56,7 @@ const Cotton = () => {
             </div>
           </m.div>
         ))}
+      </div>
       </div>
     </section>
   )

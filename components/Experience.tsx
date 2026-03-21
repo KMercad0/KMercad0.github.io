@@ -34,7 +34,8 @@ const entries = [
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-32 px-8 max-w-screen-2xl mx-auto">
+    <section id="experience" className="py-32 bg-surface-container-low">
+      <div className="px-8 max-w-screen-2xl mx-auto">
       <m.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -72,6 +73,7 @@ const Experience = () => {
             </ul>
           </m.div>
         ))}
+      </div>
       </div>
     </section>
   )

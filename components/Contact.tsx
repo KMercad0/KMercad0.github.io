@@ -18,8 +18,15 @@ const Contact = () => {
         </div>
 
         <div className="relative z-10 flex flex-col items-center text-center max-w-2xl mx-auto">
+
+               {/* Speech bubble */}
+               <div className="bg-surface-container-highest text-white/90 font-label text-sm px-4 py-2 rounded-lg mb-8 relative">
+            &quot;Waiting for the next snack.&quot;
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-surface-container-highest rotate-45" />
+          </div>
+
           {/* Cotton */}
-          <div className="w-32 h-32 bg-white rounded-full mb-8 overflow-hidden border-4 border-surface-container-high shadow-xl shadow-black">
+          <div className="w-32 h-32 bg-black rounded-full mb-8 overflow-hidden border-4 border-surface-container-high shadow-xl shadow-black">
             <img
               src="/images/c3.png"
               alt="Cotton"
@@ -28,14 +35,10 @@ const Contact = () => {
             />
           </div>
 
-          {/* Speech bubble */}
-          <div className="bg-surface-container-highest text-white/90 font-label text-sm px-4 py-2 rounded-lg mb-8 relative">
-            &quot;Waiting for the next big build.&quot;
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-surface-container-highest rotate-45" />
-          </div>
+     
 
           <h2 className="heading-serif text-5xl md:text-6xl mb-8 leading-tight">
-            Ready to start something <span className="serif-italic">impactful</span>?
+            Hit me <span className="serif-italic">up!</span>?
           </h2>
 
           <a
