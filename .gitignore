@@ -9,6 +9,20 @@ out/
 .env
 .env.local
 .env.*.local
+# Config files
+package.json
+package-lock.json
+next.config.js
+tailwind.config.js
+postcss.config.js
+tsconfig.json
+next-env.d.ts
+.claude/
+stitch/
+.serena/
+# Documentation
+README.md
+DEPLOYMENT.md
 
 # OS junk
 .DS_Store
