@@ -27,13 +27,13 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'ENIGMA | Karl Mercado — Software Developer',
+  title: 'KMercado',
   description:
-    'Full-stack developer and fresh CS graduate from UPLB. Building modern, user-focused applications.',
+    'Full-stack developer and CS graduate from UPLB. Building modern, user-focused applications.',
   keywords:
     'developer, portfolio, software engineer, web development, full-stack, React, Next.js, UPLB',
   openGraph: {
-    title: 'ENIGMA | Karl Mercado — Software Developer',
+    title: 'KMercado — Software Developer',
     description:
       'Full-stack developer and fresh CS graduate from UPLB. Building modern, user-focused applications.',
     type: 'website',
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ENIGMA | Karl Mercado — Software Developer',
-    description: 'Full-stack developer and fresh CS graduate from UPLB.',
+    title: 'KMercado',
+    description: 'Full-stack developer and CS graduate from UPLB.',
   },
 }
 
