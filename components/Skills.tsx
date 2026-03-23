@@ -5,11 +5,11 @@ import { m } from 'motion/react'
 const categories = [
   {
     label: 'Languages',
-    skills: ['JavaScript', 'TypeScript', 'Python', 'PHP', 'Java', 'C', 'Dart'],
+    skills: ['JavaScript', 'TypeScript', 'Python', 'PHP', 'Java', 'Dart'],
   },
   {
     label: 'Frontend',
-    skills: ['React', 'Next.js', 'Tailwind CSS', 'HTML5 / CSS3', 'Framer Motion'],
+    skills: ['React', 'Next.js', 'Tailwind CSS', 'HTML5 / CSS3'],
   },
   {
     label: 'Backend',
@@ -17,7 +17,7 @@ const categories = [
   },
   {
     label: 'Databases',
-    skills: ['PostgreSQL', 'MongoDB', 'Supabase (pgvector)', 'MariaDB', 'Firebase'],
+    skills: ['PostgreSQL', 'MongoDB', 'Supabase (pgvector)', 'Firebase'],
   },
   {
     label: 'AI / ML',

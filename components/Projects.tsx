@@ -61,7 +61,7 @@ const academicProjects: Project[] = [
     id: 4,
     span: 4,
     title: 'DA E-commerce',
-    label: '// MARKETPLACE',
+    label: '// COURSEWORK',
     description:
       'MERN stack marketplace for the Department of Agriculture connecting farmers directly to consumers.',
     techStack: ['React', 'Node.js', 'Express', 'MongoDB'],
@@ -73,7 +73,7 @@ const academicProjects: Project[] = [
     id: 5,
     span: 4,
     title: 'WebGL Bouncing Cube',
-    label: '// GRAPHICS',
+    label: '// COURSEWORK',
     description:
       'Interactive 3D simulation with collision detection, dynamic color changes, and camera controls.',
     techStack: ['WebGL', 'JavaScript'],
@@ -85,7 +85,7 @@ const academicProjects: Project[] = [
     id: 6,
     span: 4,
     title: 'Elbi Donation System',
-    label: '// MOBILE',
+    label: '// COURSEWORK',
     description:
       'Flutter mobile app facilitating donations between donors and organizations with Firebase Auth.',
     techStack: ['Flutter', 'Dart', 'Firebase'],
@@ -97,7 +97,7 @@ const academicProjects: Project[] = [
     id: 7,
     span: 4,
     title: 'ELBeds',
-    label: '// WEB APP',
+    label: '// COURSEWORK',
     description:
       'Django-based accommodation search platform for Los Ba\u00f1os with filtering and comparison.',
     techStack: ['Python', 'Django', 'MongoDB'],

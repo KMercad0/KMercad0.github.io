@@ -19,7 +19,7 @@ const entries = [
     period: 'Jun 2024 – Aug 2024',
     bullets: [
       'Engineered a voucher management module in PHP Laravel — handling voucher creation, user assignment, and validation logic with secure role-based access',
-      'Improved mobile responsiveness of the platform\'s landing page across screen sizes using CSS and Laravel Blade templates',
+      'Refactored existing CSS and Laravel Blade templates to unify the platform\'s landing page responsiveness across mobile and desktop breakpoints',
     ],
   },
   {
