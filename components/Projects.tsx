@@ -42,6 +42,30 @@ const personalProjects: Project[] = [
     live: 'https://peaks-pedals-landing-page.vercel.app',
     cottonPick: true,
   },
+  {
+    id: 8,
+    span: 6,
+    title: 'Iwas-Leak',
+    label: '// PDF WATERMARK TOOL',
+    description:
+      'Desktop tool that batch-watermarks PDFs with names from a CSV file. Built for Bicol University College of Medicine\u2019s ATLAS to mark distributed documents per recipient. Adjustable opacity and density controls with real-time progress tracking.',
+    techStack: ['Python', 'PyMuPDF', 'pandas', 'tkinter', 'Pillow'],
+    image: '/images/iwasleak.png',
+    github: 'https://github.com/KMercad0/Iwas-Leak',
+    live: null,
+  },
+  {
+    id: 9,
+    span: 6,
+    title: 'Tuklas nin Dunong',
+    label: '// RESEARCH ARCHIVE',
+    description:
+      'Free, volunteer-built research paper archive for a local high school. Students can search past papers by title, keyword, grade level, or school year. Teacher auth with hidden sign-in. Privacy-first \u2014 student names hidden from public, follows Philippine Data Privacy Act (RA 10173).',
+    techStack: ['React', 'TypeScript', 'Supabase', 'Cloudflare R2', 'Tailwind CSS', 'Vercel'],
+    image: '/images/tuklasnindunong.png',
+    github: 'https://github.com/KMercad0/tuklasnindunong',
+    live: 'https://tuklasnindunong.vercel.app',
+  },
 ]
 
 const academicProjects: Project[] = [
@@ -122,7 +146,7 @@ const ProjectCard = ({
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.08 }}
     viewport={{ once: true, amount: 0.3 }}
-    className={`${project.span === 8 ? 'md:col-span-8' : 'md:col-span-4'} group relative overflow-hidden card p-4 sm:p-6 md:p-8 flex flex-col min-h-[280px] sm:min-h-[320px]`}
+    className={`${project.span === 8 ? 'md:col-span-8' : project.span === 6 ? 'md:col-span-6' : 'md:col-span-4'} group relative overflow-hidden card p-4 sm:p-6 md:p-8 flex flex-col min-h-[280px] sm:min-h-[320px]`}
   >
     {/* Full background image */}
     {project.image && (
