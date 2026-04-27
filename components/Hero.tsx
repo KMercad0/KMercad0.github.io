@@ -1,166 +1,153 @@
-'use client'
+'use client';
 
-import { m } from 'motion/react'
+import { m } from 'motion/react';
+import LazyVideo from './LazyVideo';
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: 'easeOut', delay },
-  }),
-}
+/**
+ * Hero — "Studio log" / editorial.
+ * Full-viewport hero with looping video bg, dark overlay, and editorial composition.
+ *
+ * Color tokens (Tailwind):
+ *   primary #ff9157 · background #0e0e0e
+ *   surface-container-high #1f1f1f · surface-container-highest #262626
+ *   on-surface #ffffff · on-surface-variant #ababab · outline-variant #484848
+ *
+ * Type:
+ *   Display: Clash Display
+ *   Body: Geist (next/font/google)
+ *   Mono: IBM Plex Mono (next/font/google)
+ */
 
-const Hero = () => {
+const easeOut = [0.16, 1, 0.3, 1] as const;
+
+export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center pt-16 overflow-hidden">
-      {/* Subtle orange radial glow background */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] sm:w-[600px] md:w-[800px] h-[300px] sm:h-[400px] md:h-[600px] bg-primary/[0.04] rounded-full blur-[120px] sm:blur-[200px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] bg-primary/[0.03] rounded-full blur-[100px] sm:blur-[150px] pointer-events-none" />
+    <section
+      id="hero"
+      className="relative min-h-screen w-full overflow-hidden bg-background text-on-surface"
+    >
+      {/* Looping video background */}
+      <LazyVideo
+        eager
+        src="/videos/hero.mp4"
+        mobileSrc="/videos/hero_mobile.mp4"
+      />
 
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 w-full py-10 sm:py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
+      {/* Dark gradient overlay for legibility */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-10
+                   bg-[linear-gradient(180deg,rgba(0,0,0,0.60)_0%,rgba(0,0,0,0.40)_45%,rgba(0,0,0,0.70)_100%)]"
+      />
 
-          {/* Left column */}
-          <div className="md:col-span-7 flex flex-col items-start">
-            {/* Headline */}
-            <m.h1
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.15}
-              className="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-on-surface leading-[1.1] tracking-tighter font-bold"
+      {/* Foreground grid */}
+      <div className="relative z-20 flex min-h-screen flex-col p-6 sm:p-8">
+        {/* Top-left wordmark */}
+        <m.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+          className="flex flex-col gap-1"
+        >
+          <span className="font-display text-2xl italic leading-none text-on-surface">
+            KMercado<span className="text-primary">.</span>
+          </span>
+        </m.div>
+
+        {/* Spacer pushes the bottom row down */}
+        <div className="flex-1" />
+
+        {/* Bottom row: copy left, polaroid right */}
+        <div className="flex w-full items-end justify-between gap-6">
+          {/* Bottom-left content stack */}
+          <div className="max-w-3xl">
+            <m.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: easeOut }}
+              className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-primary"
             >
-              &ldquo;The inner{' '}
-              <span className="italic text-primary">machinations</span>{' '}
-              of my mind are an{' '}
-              <a
-                href="https://www.youtube.com/watch?v=KNZSXnrbs_k"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary italic hover:text-primary-container transition-colors duration-200 underline decoration-primary/30 underline-offset-4 hover:decoration-primary/60"
-              >
-                enigma.
-              </a>
-              &rdquo;
+              // now — making things work
+            </m.p>
+
+            <m.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.35, ease: easeOut }}
+              className="mt-3 font-display text-5xl font-semibold leading-[0.95] tracking-tight text-on-surface
+                         sm:text-6xl md:text-7xl lg:text-8xl"
+            >
+              lock in, crash out, repeat
             </m.h1>
 
-            {/* Subtitle */}
             <m.div
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.25}
-              className="mt-4 sm:mt-6 space-y-1 text-base sm:text-lg text-on-surface-variant leading-relaxed max-w-lg"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.55 }}
+              className="mt-5 max-w-md font-sans text-base text-on-surface-variant sm:text-lg"
             >
-              <p className="text-xl sm:text-2xl md:text-3xl text-on-surface font-semibold">Hi, I&apos;m Karl.</p>
-              <p>I build things, learn things, and break things.</p>
+              <p>A human in this AI of a world.</p>
+              <p className="line-through">I also use it though</p>
             </m.div>
 
-            {/* Dual CTAs */}
             <m.div
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.35}
-              className="mt-4 sm:mt-6 flex flex-wrap gap-3 sm:gap-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.7 }}
+              className="mt-6 flex flex-col gap-3 sm:flex-row"
             >
-              <a href="#projects" className="btn-primary">
-                View Projects
+              <a
+                href="#projects"
+                className="group inline-flex items-center justify-center gap-2
+                           rounded-md border border-outline-variant/40 bg-black/20 px-5 py-3
+                           font-mono text-[0.75rem] uppercase tracking-[0.18em] text-on-surface
+                           backdrop-blur-md transition-all duration-200
+                           hover:border-primary/60 hover:bg-black/35 hover:ring-1 hover:ring-primary/40"
+              >
+                <span>projects</span>
+                <span className="text-primary transition-transform duration-200 group-hover:translate-x-0.5">
+                  &rarr;
+                </span>
               </a>
-              <a href="#cotton" className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white text-[#000000] font-medium text-sm tracking-wide hover:bg-white/90 transition-colors duration-200">
-                View Cotton
+              <a
+                href="#about"
+                className="group inline-flex items-center justify-center gap-2
+                           rounded-md border border-outline-variant/40 bg-black/20 px-5 py-3
+                           font-mono text-[0.75rem] uppercase tracking-[0.18em] text-on-surface
+                           backdrop-blur-md transition-all duration-200
+                           hover:border-primary/60 hover:bg-black/35 hover:ring-1 hover:ring-primary/40"
+              >
+                <span>contact</span>
+                <span className="text-primary transition-transform duration-200 group-hover:translate-x-0.5">
+                  &rarr;
+                </span>
               </a>
-            </m.div>
-
-            {/* About text block */}
-            <m.div
-              initial={{ opacity: 0, y: 5 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="mt-4 sm:mt-6 max-w-3xl space-y-3 sm:space-y-4 text-on-surface-variant leading-relaxed text-sm sm:text-base md:text-lg"
-            >
-              <p>
-                Been on the Computer ever since childhood.
-              </p>
-              <p>
-                Played games, tweaked settings, messed around with programs.
-              </p>
-              <p>
-                Self-taught, Self-paced, Curiosity-driven, and if I hyperfocus on a niche thing at 1 am then so be it.
-              </p>
-              <p>
-                ADHD brain and habits. Either locked in or crashing out.
-              </p>
-              <p>
-                I work well alone. I work better with the right people.
-              </p>
-
-              <p>
-                Made an{' '}
-                <a
-                  href="https://www.youtube.com/watch?v=SVSnEFWp8NQ"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:text-primary-container transition-colors duration-200 underline decoration-primary/30 underline-offset-4 hover:decoration-primary/60"
-                >
-                  Oath
-                </a>
-                , Made mistakes.{' '}
-                <a
-                  href="https://www.youtube.com/watch?v=fBE_2sHDt4E"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:text-primary-container transition-colors duration-200 underline decoration-primary/30 underline-offset-4 hover:decoration-primary/60"
-                >
-                  Pushing on through.
-                </a>
-              </p>
-              <p>
-                This isn't just a portfolio. It's me
-              </p>
             </m.div>
           </div>
 
-          {/* Right column — Cotton */}
-          <m.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            custom={0}
-            className="md:col-span-5 flex justify-center md:justify-center relative mt-10 md:mt-[30px] pt-6 md:pt-0"
+          {/* Bottom-right polaroid */}
+          <m.figure
+            initial={{ opacity: 0, scale: 0.94, rotate: 3 }}
+            animate={{ opacity: 1, scale: 1, rotate: 3 }}
+            transition={{ duration: 0.7, delay: 0.4, ease: easeOut }}
+            className="hidden w-44 shrink-0 rounded-md bg-surface-container-high p-2 shadow-md sm:block sm:w-52"
+            style={{ transformOrigin: 'bottom right' }}
           >
-            {/* Ambient glow */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-80 h-80 bg-primary/5 rounded-full blur-[120px]" />
+            <div className="aspect-[3/4] w-full overflow-hidden rounded-sm bg-surface-container-highest">
+              <img
+                src="/images/c1.png"
+                alt="Cotton — Chief Dog Officer"
+                className="h-full w-full object-cover"
+                loading="eager"
+              />
             </div>
-
-            <div className="relative">
-              {/* Speech bubble */}
-              <div className="absolute -top-14 left-1/2 -translate-x-1/2 z-10 bg-surface-container-highest border border-outline-variant/20 rounded-2xl px-5 py-3 max-w-xs">
-                <p className="text-on-surface-variant text-sm font-mono leading-relaxed">
-                  He made me pose for this. Again.
-                </p>
-                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-surface-container-highest border-b border-r border-outline-variant/20 rotate-45" />
-              </div>
-
-              {/* Cotton photo in rotated frame */}
-              <div className="bg-surface-container-lowest p-2 rounded-xl transform rotate-3 shadow-2xl shadow-black/50">
-                <div className="w-56 h-64 sm:w-72 sm:h-80 md:w-80 md:h-[22rem] lg:w-[22rem] lg:h-[26rem] rounded-lg overflow-hidden">
-                  <img
-                    src="/images/c1.png"
-                    alt="Cotton"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-          </m.div>
+            <figcaption className="mt-2 flex items-center justify-between font-mono text-[0.65rem] text-on-surface-variant">
+              <span>[ cotton.jpg ]</span>
+              <span className="text-primary">CDO</span>
+            </figcaption>
+          </m.figure>
         </div>
       </div>
     </section>
-  )
+  );
 }
-
-export default Hero

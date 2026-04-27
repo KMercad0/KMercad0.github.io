@@ -1,386 +1,429 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { m, AnimatePresence } from 'motion/react'
+import { m, AnimatePresence } from 'motion/react';
+import { useState } from 'react';
+import LazyVideo from './LazyVideo';
 
-interface Project {
-  id: number
-  span: number
-  title: string
-  label: string
-  description: string
-  techStack: string[]
-  image: string | null
-  github: string | null
-  live: string | null
-  cottonPick?: boolean
+/**
+ * Projects — "studio log" / editorial.
+ * Sequential to Hero. Same color tokens & type families.
+ *
+ * Tokens (Tailwind):
+ *   primary #ff9157 · background #0e0e0e
+ *   surface-container-high #1f1f1f · surface-container-highest #262626
+ *   on-surface #ffffff · on-surface-variant #ababab · outline-variant #484848
+ */
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Types & data
+// ─────────────────────────────────────────────────────────────────────────────
+
+type Link = { label: 'VIEW CODE' | 'LIVE SITE'; href: string };
+
+type Project = {
+  id: string;
+  label: string;          // mono eyebrow, e.g. "AI DOCUMENT CHAT"
+  title: string;
+  description: string;
+  tech: string[];
+  image?: string;
+  links: Link[];
+  span?: 4 | 6 | 8;        // md:col-span-{n}
+  cottonsPick?: boolean;
+};
+
+const personal: Project[] = [
+  {
+    id: 'mayhapottabi',
+    label: 'AI DOCUMENT CHAT',
+    title: 'MayHapotTabi',
+    description:
+      'Full RAG pipeline: PDF ingestion → chunking → Voyage embeddings → pgvector search → Anthropic streaming. Deployed on Railway + Vercel with Supabase RLS for per-user isolation.',
+    tech: ['React', 'TypeScript', 'Node.js', 'Supabase', 'pgvector', 'Anthropic API', 'Docker'],
+    image: '/images/mht4.png',
+    links: [{ label: 'VIEW CODE', href: '#' }],
+    span: 8,
+  },
+  {
+    id: 'peaks-pedals',
+    label: 'FREELANCE',
+    title: 'Peaks & Pedals',
+    description:
+      'Production vacation rental site. Lighthouse 100/95. Next.js 15, React 19, Tailwind 4. SEO via JSON-LD + AVIF/WebP.',
+    tech: ['Next.js', 'React', 'Tailwind'],
+    image: '/images/peaksnpedals.webp',
+    links: [
+      { label: 'VIEW CODE', href: '#' },
+      { label: 'LIVE SITE', href: '#' },
+    ],
+    span: 4,
+    cottonsPick: true,
+  },
+  {
+    id: 'iwas-leak',
+    label: 'PDF WATERMARK TOOL',
+    title: 'Iwas-Leak',
+    description:
+      'Desktop tool batch-watermarking PDFs from CSV. Built for Bicol University ATLAS. Adjustable opacity + density.',
+    tech: ['Python', 'PyMuPDF', 'pandas', 'tkinter', 'Pillow'],
+    image: '/images/iwasleak.png',
+    links: [{ label: 'VIEW CODE', href: '#' }],
+    span: 6,
+  },
+  {
+    id: 'tuklas-nin-dunong',
+    label: 'RESEARCH ARCHIVE',
+    title: 'Tuklas nin Dunong',
+    description:
+      'Volunteer-built research paper archive for a local high school. Search by title, keyword, grade, year. Privacy-first per RA 10173.',
+    tech: ['React', 'TypeScript', 'Supabase', 'Cloudflare R2', 'Tailwind', 'Vercel'],
+    image: '/images/tuklasnindunong.png',
+    links: [
+      { label: 'VIEW CODE', href: '#' },
+      { label: 'LIVE SITE', href: '#' },
+    ],
+    span: 6,
+  },
+];
+
+const academic: Project[] = [
+  {
+    id: 'uhome',
+    label: 'GIS WEB APP',
+    title: 'uHOME-UPLB',
+    description: 'GIS-enabled housing app for UPLB managing 50+ units with Leaflet map.',
+    tech: ['React', 'Node.js', 'MongoDB', 'Leaflet.js', 'Firebase'],
+    image: '/images/uHOME_MAP.webp',
+    links: [{ label: 'VIEW CODE', href: '#' }],
+    span: 4,
+  },
+  {
+    id: 'da-ecommerce',
+    label: 'COURSEWORK',
+    title: 'DA E-commerce',
+    description: 'MERN marketplace connecting farmers to consumers.',
+    tech: ['React', 'Node', 'Express', 'MongoDB'],
+    image: '/images/100.png',
+    links: [{ label: 'VIEW CODE', href: '#' }],
+    span: 4,
+  },
+  {
+    id: 'webgl-cube',
+    label: 'COURSEWORK',
+    title: 'WebGL Bouncing Cube',
+    description: '3D simulation with collision, color, camera controls.',
+    tech: ['WebGL', 'JavaScript'],
+    image: '/images/161.png',
+    links: [{ label: 'VIEW CODE', href: '#' }],
+    span: 4,
+  },
+  {
+    id: 'elbi-donation',
+    label: 'COURSEWORK',
+    title: 'Elbi Donation System',
+    description: 'Flutter mobile app for donations with Firebase Auth.',
+    tech: ['Flutter', 'Dart', 'Firebase'],
+    links: [{ label: 'VIEW CODE', href: '#' }],
+    span: 4,
+  },
+  {
+    id: 'elbeds',
+    label: 'COURSEWORK',
+    title: 'ELBeds',
+    description: 'Django accommodation search platform for Los Baños.',
+    tech: ['Python', 'Django', 'MongoDB'],
+    links: [{ label: 'VIEW CODE', href: '#' }],
+    span: 4,
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Icons
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Phosphor "PawPrint" — inline so we don't add a dep.
+function PawPrint({ className = 'h-3 w-3' }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 256 256"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M212,120a28,28,0,1,1-28-28A28,28,0,0,1,212,120ZM72,92A28,28,0,1,0,100,120,28,28,0,0,0,72,92Zm33.78-16.43a28,28,0,1,0-23.35-32A28,28,0,0,0,105.78,75.57Zm68.44,0a28,28,0,1,0-23.35-32A28,28,0,0,0,174.22,75.57Zm5.27,82.41A37.94,37.94,0,0,1,165.59,140a37.85,37.85,0,0,0-75.18,0,37.94,37.94,0,0,1-13.9,18,40,40,0,0,0,23.93,72,39.48,39.48,0,0,0,18.38-4.51,15.86,15.86,0,0,1,14.36,0A39.48,39.48,0,0,0,151.56,230a40,40,0,0,0,27.93-72.02Z" />
+    </svg>
+  );
 }
 
-const personalProjects: Project[] = [
-  {
-    id: 1,
-    span: 8,
-    title: 'MayHapotTabi',
-    label: '// AI DOCUMENT CHAT',
-    description:
-      'Engineered a full RAG pipeline from scratch: PDF ingestion \u2192 400-token chunking \u2192 Voyage AI embeddings \u2192 pgvector cosine similarity search \u2192 Anthropic API streaming response, live on Railway + Vercel. Enforced per-user data isolation via Supabase Row Level Security \u2014 zero cross-user data leakage by design. Automated deployment with Docker multi-stage builds and GitHub Actions CI/CD.',
-    techStack: ['React', 'TypeScript', 'Node.js', 'Express', 'Supabase', 'pgvector', 'Anthropic API', 'Docker', 'GitHub Actions'],
-    image: '/images/mht4.png',
-    github: 'https://github.com/KMercad0/MayHapotTabi',
-    live: null,
-  },
-  {
-    id: 2,
-    span: 4,
-    title: 'Peaks & Pedals',
-    label: '// FREELANCE',
-    description:
-      'Production vacation rental website achieving Lighthouse scores of 100 desktop / 95 mobile. Full project ownership from UI to deployment with Next.js 15, React 19, Tailwind CSS 4, SEO via JSON-LD, OpenGraph, and AVIF/WebP image optimization.',
-    techStack: ['Next.js', 'React', 'Tailwind CSS'],
-    image: '/images/peaksnpedals.png',
-    github: 'https://github.com/KMercad0/Peaks-Pedals-Landing-Page',
-    live: 'https://peaks-pedals-landing-page.vercel.app',
-    cottonPick: true,
-  },
-  {
-    id: 8,
-    span: 6,
-    title: 'Iwas-Leak',
-    label: '// PDF WATERMARK TOOL',
-    description:
-      'Desktop tool that batch-watermarks PDFs with names from a CSV file. Built for Bicol University College of Medicine\u2019s ATLAS to mark distributed documents per recipient. Adjustable opacity and density controls with real-time progress tracking.',
-    techStack: ['Python', 'PyMuPDF', 'pandas', 'tkinter', 'Pillow'],
-    image: '/images/iwasleak.png',
-    github: 'https://github.com/KMercad0/Iwas-Leak',
-    live: null,
-  },
-  {
-    id: 9,
-    span: 6,
-    title: 'Tuklas nin Dunong',
-    label: '// RESEARCH ARCHIVE',
-    description:
-      'Free, volunteer-built research paper archive for a local high school. Students can search past papers by title, keyword, grade level, or school year. Teacher auth with hidden sign-in. Privacy-first \u2014 student names hidden from public, follows Philippine Data Privacy Act (RA 10173).',
-    techStack: ['React', 'TypeScript', 'Supabase', 'Cloudflare R2', 'Tailwind CSS', 'Vercel'],
-    image: '/images/tuklasnindunong.png',
-    github: 'https://github.com/KMercad0/tuklasnindunong',
-    live: 'https://tuklasnindunong.vercel.app',
-  },
-]
+function MagnifierIcon({ className = 'h-4 w-4' }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.5-3.5" />
+    </svg>
+  );
+}
 
-const academicProjects: Project[] = [
-  {
-    id: 3,
-    span: 4,
-    title: 'uHOME-UPLB',
-    label: '// GIS WEB APP',
-    description:
-      'GIS-enabled web app for UPLB Housing Office managing 50+ housing units with interactive map and real-time maintenance tracking.',
-    techStack: ['React', 'Node.js', 'MongoDB', 'Leaflet.js', 'Firebase'],
-    image: '/images/uHOME_MAP.png',
-    github: 'https://github.com/KMercad0/uHome-Public',
-    live: null,
-  },
-  {
-    id: 4,
-    span: 4,
-    title: 'DA E-commerce',
-    label: '// COURSEWORK',
-    description:
-      'MERN stack marketplace for the Department of Agriculture connecting farmers directly to consumers.',
-    techStack: ['React', 'Node.js', 'Express', 'MongoDB'],
-    image: '/images/100.png',
-    github: 'https://github.com/CMSC100-1S2324/project-KMercad0',
-    live: null,
-  },
-  {
-    id: 5,
-    span: 4,
-    title: 'WebGL Bouncing Cube',
-    label: '// COURSEWORK',
-    description:
-      'Interactive 3D simulation with collision detection, dynamic color changes, and camera controls.',
-    techStack: ['WebGL', 'JavaScript'],
-    image: '/images/161.png',
-    github: 'https://github.com/CMSC161/Project',
-    live: null,
-  },
-  {
-    id: 6,
-    span: 4,
-    title: 'Elbi Donation System',
-    label: '// COURSEWORK',
-    description:
-      'Flutter mobile app facilitating donations between donors and organizations with Firebase Auth.',
-    techStack: ['Flutter', 'Dart', 'Firebase'],
-    image: null,
-    github: 'https://github.com/dominiclaserna/cmsc23Project',
-    live: null,
-  },
-  {
-    id: 7,
-    span: 4,
-    title: 'ELBeds',
-    label: '// COURSEWORK',
-    description:
-      'Django-based accommodation search platform for Los Ba\u00f1os with filtering and comparison.',
-    techStack: ['Python', 'Django', 'MongoDB'],
-    image: null,
-    github: 'https://github.com/rnarlo/ELBeds',
-    live: null,
-  },
-]
+function ArrowRight({ className = 'h-3 w-3' }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M5 12h14" />
+      <path d="m13 5 7 7-7 7" />
+    </svg>
+  );
+}
 
-/* ── Personal project card (asymmetric grid, full bg image) ── */
-const ProjectCard = ({
+// ─────────────────────────────────────────────────────────────────────────────
+// Card
+// ─────────────────────────────────────────────────────────────────────────────
+
+function ProjectCard({
   project,
+  variant,
   index,
-  onImageClick,
+  onOpenImage,
 }: {
-  project: Project
-  index: number
-  onImageClick: (src: string) => void
-}) => (
-  <m.div
-    initial={{ opacity: 0, y: 24 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.08 }}
-    viewport={{ once: true, amount: 0.3 }}
-    className={`${project.span === 8 ? 'md:col-span-8' : project.span === 6 ? 'md:col-span-6' : 'md:col-span-4'} group relative overflow-hidden card p-4 sm:p-6 md:p-8 flex flex-col min-h-[280px] sm:min-h-[320px]`}
-  >
-    {/* Full background image */}
-    {project.image && (
-      <>
-        <div className="absolute inset-0">
-          <img
-            src={project.image}
-            alt=""
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/70 to-black/50 group-hover:from-black/80 group-hover:via-black/60 group-hover:to-black/40 transition-all duration-500" />
-      </>
-    )}
+  project: Project;
+  variant: 'personal' | 'academic';
+  index: number;
+  onOpenImage: (src: string, alt: string) => void;
+}) {
+  const isLargePersonal = variant === 'personal' && project.span === 8;
+  const span = project.span ?? 4;
+  const colSpan =
+    span === 8 ? 'md:col-span-8' : span === 6 ? 'md:col-span-6' : 'md:col-span-4';
 
-    {/* Ambient glow (no-image cards only) */}
-    {!project.image && index === 0 && (
-      <div className="absolute -right-20 -top-20 w-80 h-80 bg-primary/5 rounded-full blur-[100px] group-hover:bg-primary/10 transition-all duration-700" />
-    )}
+  const padding = variant === 'personal' ? 'p-6 md:p-8' : 'p-5';
+  const minH = variant === 'personal' ? 'min-h-[320px]' : 'min-h-[260px]';
 
-    <div className="relative z-10 flex flex-col h-full">
-      <div className="mb-8">
-        <span className="section-label mb-2 block">{project.label}</span>
-        <h3 className={`heading-serif ${index === 0 ? 'text-2xl sm:text-3xl md:text-4xl' : 'text-xl sm:text-2xl md:text-3xl'} mb-2`}>
-          {project.title}
-        </h3>
-        {/* Cotton's Pick badge — inline below title */}
-        {project.cottonPick && (
-          <div className="inline-flex items-center gap-1.5 bg-primary/10 border border-primary/20 rounded-full px-3 py-1 mt-1">
-            <span className="text-xs">🐾</span>
-            <span className="text-xs font-label font-bold text-primary uppercase tracking-wider">Cotton&apos;s Pick</span>
-          </div>
-        )}
-      </div>
-
-      <p className="font-body text-on-surface-variant text-base mb-8 max-w-xl">
-        {project.description}
-      </p>
-
-      <div className="mt-auto">
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.techStack.map((t) => (
-            <span key={t} className="tag">{t}</span>
-          ))}
-        </div>
-        <div className="flex items-center gap-6">
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-label text-sm font-bold text-primary group/link"
-            >
-              VIEW CODE
-              <svg className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </a>
-          )}
-          {project.live && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-label text-sm font-bold text-on-surface-variant hover:text-primary transition-colors group/link"
-            >
-              LIVE SITE
-              <svg className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </a>
-          )}
-        </div>
-      </div>
-    </div>
-
-    {/* Clickable overlay for lightbox on image cards */}
-    {project.image && (
-      <button
-        className="absolute top-4 right-4 z-20 w-8 h-8 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/60 hover:text-white hover:bg-white/20 transition-all opacity-0 group-hover:opacity-100"
-        onClick={() => project.image && onImageClick(project.image)}
-        aria-label="Preview image"
-      >
-        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-        </svg>
-      </button>
-    )}
-  </m.div>
-)
-
-/* ── Academic project card (compact, uniform grid) ── */
-const AcademicCard = ({
-  project,
-  index,
-}: {
-  project: Project
-  index: number
-}) => (
-  <m.div
-    initial={{ opacity: 0, y: 16 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.08 }}
-    viewport={{ once: true, amount: 0.3 }}
-    className="group relative overflow-hidden card p-4 sm:p-6 flex flex-col min-h-[240px] sm:min-h-[260px]"
-  >
-    {/* Full background image */}
-    {project.image && (
-      <>
-        <div className="absolute inset-0">
-          <img
-            src={project.image}
-            alt=""
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/75 to-black/55 group-hover:from-black/85 group-hover:via-black/65 group-hover:to-black/45 transition-all duration-500" />
-      </>
-    )}
-
-    <div className="relative z-10 flex flex-col h-full">
-      <div className="mb-4">
-        <span className="font-label text-[10px] text-primary tracking-[0.2em] uppercase mb-1.5 block">{project.label}</span>
-        <h3 className="heading-serif text-2xl">{project.title}</h3>
-      </div>
-
-      <p className="font-body text-on-surface-variant text-sm mb-6 leading-relaxed">
-        {project.description}
-      </p>
-
-      <div className="mt-auto">
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {project.techStack.map((t) => (
-            <span key={t} className="tag text-[0.65rem]">{t}</span>
-          ))}
-        </div>
-        {project.github && (
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-label text-xs font-bold text-primary group/link"
-          >
-            VIEW CODE
-            <svg className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </a>
-        )}
-      </div>
-    </div>
-  </m.div>
-)
-
-const Projects = () => {
-  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
+  const titleSize = isLargePersonal
+    ? 'text-2xl sm:text-3xl'
+    : variant === 'personal'
+    ? 'text-xl sm:text-2xl'
+    : 'text-xl sm:text-2xl';
 
   return (
-    <section id="projects" className="py-20 sm:py-32">
-      <div className="px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
-        {/* Header */}
-        <m.header
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          viewport={{ once: true, amount: 0.5 }}
-          className="mb-20"
-        >
-          <span className="section-label mb-2 block">// Projects</span>
-        </m.header>
+    <m.article
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+      className={`group relative col-span-1 ${colSpan} flex flex-col overflow-hidden rounded-md
+                  border border-outline-variant/30 bg-surface-container-high/40 ${padding} ${minH}
+                  transition-colors duration-300 hover:border-primary/50`}
+    >
+      {/* Background image + overlay */}
+      {project.image && (
+        <>
+          <div
+            className="pointer-events-none absolute inset-0 -z-10 bg-cover bg-center"
+            style={{ backgroundImage: `url(${project.image})` }}
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute inset-0 -z-10
+                       bg-gradient-to-br from-black/90 via-black/75 to-black/55"
+            aria-hidden="true"
+          />
+        </>
+      )}
 
-        {/* Personal Projects */}
-        <m.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
-          viewport={{ once: true }}
-          className="mb-6"
+      {/* Image preview button */}
+      {project.image && (
+        <button
+          type="button"
+          onClick={() => onOpenImage(project.image!, project.title)}
+          aria-label={`Preview ${project.title} image`}
+          className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center
+                     rounded-md border border-outline-variant/30 bg-black/40 text-on-surface
+                     opacity-0 backdrop-blur-sm transition-opacity duration-200
+                     hover:bg-black/60 group-hover:opacity-100 focus-visible:opacity-100"
         >
-          <h3 className="text-xs font-label text-primary uppercase tracking-[0.2em] mb-8 pl-4">Personal</h3>
-        </m.div>
+          <MagnifierIcon />
+        </button>
+      )}
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-20">
-          {personalProjects.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} onImageClick={setLightboxSrc} />
-          ))}
+      {/* Top: label + title + cotton's pick + description */}
+      <div className="relative">
+        <div className="font-mono uppercase tracking-[0.2em] text-primary text-[0.65rem] mb-2">
+          // {project.label}
         </div>
 
-        {/* Academic Projects */}
-        <m.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
-          viewport={{ once: true }}
-          className="mb-6"
+        <h3
+          className={`font-display font-semibold leading-tight tracking-tight text-on-surface ${titleSize}`}
         >
-          <h3 className="text-xs font-label text-primary uppercase tracking-[0.2em] mb-8 pl-4">Academic</h3>
-        </m.div>
+          {project.title}
+        </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {academicProjects.map((project, i) => (
-            <AcademicCard key={project.id} project={project} index={i} />
-          ))}
-        </div>
+        {project.cottonsPick && (
+          <div
+            className="mt-3 inline-flex items-center gap-1.5 rounded-full
+                       border border-primary/30 bg-primary/10 px-3 py-1"
+          >
+            <PawPrint className="h-3 w-3 text-primary" />
+            <span className="font-mono uppercase tracking-[0.18em] text-primary text-[0.65rem]">
+              Cotton&apos;s Pick
+            </span>
+          </div>
+        )}
 
-        {/* Lightbox */}
-        <AnimatePresence>
-          {lightboxSrc && (
-            <m.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-50 bg-surface/90 backdrop-blur-sm flex items-center justify-center p-4"
-              onClick={() => setLightboxSrc(null)}
-            >
-              <m.img
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                src={lightboxSrc}
-                alt="Project preview"
-                className="max-w-4xl max-h-[85vh] w-full object-contain rounded-lg shadow-2xl"
-                onClick={(e) => e.stopPropagation()}
-              />
-            </m.div>
-          )}
-        </AnimatePresence>
+        <p className="mt-4 max-w-xl font-sans leading-relaxed text-on-surface-variant text-sm sm:text-base mb-6">
+          {project.description}
+        </p>
       </div>
-    </section>
-  )
+
+      {/* Bottom: tech + links */}
+      <div className="relative mt-auto flex flex-col gap-4">
+        <div className="flex flex-wrap gap-2">
+          {project.tech.map((t) => (
+            <span
+              key={t}
+              className="rounded-sm bg-surface-container-highest/60 px-2 py-0.5
+                         font-mono uppercase tracking-[0.14em] text-on-surface-variant text-[0.65rem]"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex flex-wrap gap-5">
+          {project.links.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="group/link inline-flex items-center gap-1.5
+                         font-mono font-semibold uppercase tracking-[0.16em] text-primary text-[0.7rem]"
+            >
+              <span>{link.label}</span>
+              <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover/link:translate-x-0.5" />
+            </a>
+          ))}
+        </div>
+      </div>
+    </m.article>
+  );
 }
 
-export default Projects
+// ─────────────────────────────────────────────────────────────────────────────
+// Section
+// ─────────────────────────────────────────────────────────────────────────────
+
+export default function Projects() {
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+
+  return (
+    <section
+      id="projects"
+      className="relative w-full overflow-hidden py-24 md:py-32 text-on-surface"
+    >
+      {/* Video bg */}
+      <LazyVideo
+        src="/videos/projects_mobile.mp4"
+        mobileSrc="/videos/projects_mobile.mp4"
+      />
+
+      {/* Dark overlay for card readability */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-black/85 via-black/80 to-black/85"
+      />
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 sm:px-8">
+        {/* Header */}
+        <m.header
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-12"
+        >
+          <p className="font-mono uppercase tracking-[0.2em] text-primary text-[0.7rem]">
+            // projects
+          </p>
+          <h2 className="mt-3 font-display font-semibold tracking-tight text-on-surface
+                         text-4xl sm:text-5xl md:text-6xl">
+            selected work
+          </h2>
+        </m.header>
+
+        {/* Personal */}
+        <div className="mb-8 pl-4 font-mono uppercase tracking-[0.2em] text-primary text-xs">
+          // personal
+        </div>
+        <div className="mb-20 grid grid-cols-1 gap-4 md:grid-cols-12">
+          {personal.map((p, i) => (
+            <ProjectCard
+              key={p.id}
+              project={p}
+              variant="personal"
+              index={i}
+              onOpenImage={(src, alt) => setLightbox({ src, alt })}
+            />
+          ))}
+        </div>
+
+        {/* Academic */}
+        <div className="mb-8 pl-4 font-mono uppercase tracking-[0.2em] text-primary text-xs">
+          // academic
+        </div>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-12">
+          {academic.map((p, i) => (
+            <ProjectCard
+              key={p.id}
+              project={p}
+              variant="academic"
+              index={i}
+              onOpenImage={(src, alt) => setLightbox({ src, alt })}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox && (
+          <m.div
+            key="lightbox"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setLightbox(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center
+                       bg-black/90 p-4 backdrop-blur-sm"
+          >
+            <m.img
+              key={lightbox.src}
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              src={lightbox.src}
+              alt={lightbox.alt}
+              onClick={(e) => e.stopPropagation()}
+              className="max-h-[85vh] max-w-4xl rounded-md object-contain"
+            />
+          </m.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}

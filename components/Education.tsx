@@ -1,45 +1,139 @@
-'use client'
+'use client';
 
-import { m } from 'motion/react'
+import { m } from 'motion/react';
 
-const Education = () => {
+/**
+ * Education — "where it started"
+ * Static background (no video). Sequential after Hero, before Projects.
+ */
+
+const easeOut = [0.16, 1, 0.3, 1] as const;
+
+export default function Education() {
   return (
-    <section id="education" className="py-20 bg-surface-container-low">
-      <div className="px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
-      <m.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        viewport={{ once: true, amount: 0.3 }}
+    <section
+      id="education"
+      className="relative w-full overflow-hidden bg-background py-24 md:py-32 text-on-surface"
+    >
+      {/* ── Static background layers ─────────────────────────────────────── */}
+
+      {/* Star field — multi-layer radial dots */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 opacity-60"
+        style={{
+          backgroundImage: `
+            radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,0.6), transparent 50%),
+            radial-gradient(1px 1px at 27% 73%, rgba(255,255,255,0.4), transparent 50%),
+            radial-gradient(1.5px 1.5px at 41% 32%, rgba(255,255,255,0.7), transparent 50%),
+            radial-gradient(1px 1px at 58% 81%, rgba(255,255,255,0.5), transparent 50%),
+            radial-gradient(1px 1px at 67% 14%, rgba(255,255,255,0.6), transparent 50%),
+            radial-gradient(1px 1px at 78% 56%, rgba(255,255,255,0.4), transparent 50%),
+            radial-gradient(1.5px 1.5px at 88% 28%, rgba(255,255,255,0.7), transparent 50%),
+            radial-gradient(1px 1px at 92% 88%, rgba(255,255,255,0.5), transparent 50%),
+            radial-gradient(1px 1px at 5% 50%, rgba(255,255,255,0.5), transparent 50%),
+            radial-gradient(1px 1px at 50% 8%, rgba(255,255,255,0.4), transparent 50%),
+            radial-gradient(1px 1px at 63% 95%, rgba(255,255,255,0.45), transparent 50%),
+            radial-gradient(2px 2px at 35% 55%, rgba(255,145,87,0.55), transparent 50%)
+          `,
+          backgroundSize: '100% 100%',
+        }}
+      />
+
+      {/* Nebula glow — cool + warm blend */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          background: `
+            radial-gradient(ellipse 50% 40% at 30% 40%, rgba(80,120,200,0.05), transparent 70%),
+            radial-gradient(ellipse 40% 30% at 75% 65%, rgba(255,145,87,0.06), transparent 70%)
+          `,
+        }}
+      />
+
+      {/* Edge fade — bridges into adjacent video sections */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-black/60 via-transparent to-black/60"
+      />
+
+      {/* Layer 1 — SVG fractal noise */}
+      <svg
+        className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.04] mix-blend-screen"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <span className="section-label mb-8 block">// education</span>
-        <a
-          href="https://uplb.edu.ph"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="card bg-surface-container-lowest px-4 sm:px-6 md:px-8 py-4 sm:py-6 flex items-center gap-4 sm:gap-6 hover:border-primary/40 transition-colors duration-200 group"
+        <filter id="edu-noise">
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#edu-noise)" />
+      </svg>
+
+      {/* Layer 2 — diagonal pinstripe */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0"
+        aria-hidden="true"
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(135deg, transparent 0 14px, rgba(255,255,255,0.015) 14px 15px)',
+        }}
+      />
+
+      {/* Layer 3 — top-edge orange hairline */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"
+        aria-hidden="true"
+      />
+
+      {/* ── Content ──────────────────────────────────────────────────────── */}
+      <div className="relative z-10 mx-auto w-full max-w-screen-2xl px-4 sm:px-6 md:px-8">
+        {/* Header */}
+        <m.header
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: easeOut }}
+          className="mb-16 text-center"
         >
-          <div className="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center shrink-0 text-primary">
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
-            </svg>
+          <p className="mb-2 font-mono uppercase tracking-widest text-primary text-[0.7rem]">
+            // education
+          </p>
+          <h2 className="font-display font-semibold tracking-tight text-on-surface text-4xl sm:text-5xl md:text-6xl">
+            where it started
+          </h2>
+        </m.header>
+
+        {/* Card */}
+        <m.article
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.2, ease: easeOut }}
+          className="mx-auto max-w-3xl rounded-md border border-outline-variant/30 bg-surface-container/40 p-8 text-center md:p-10"
+        >
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            <span className="font-mono uppercase tracking-widest text-on-surface-variant text-[0.7rem]">
+              // 2019 — 2025
+            </span>
+            <span className="font-mono uppercase tracking-widest text-primary text-[0.7rem]">
+              BS COMPUTER SCIENCE
+            </span>
           </div>
-          <div>
-            <p className="text-base sm:text-lg font-headline font-bold text-on-surface group-hover:text-primary transition-colors duration-200">
-              University of the Philippines Los Ba&ntilde;os
-            </p>
-            <p className="text-sm text-on-surface-variant font-label mt-1">
-              BS Computer Science &middot; 2019&ndash;2025
-            </p>
+
+          <h3 className="mt-4 font-display font-semibold text-on-surface text-2xl sm:text-3xl">
+            University of the Philippines Los Baños
+          </h3>
+          <p className="mt-1 font-sans text-on-surface-variant text-base">
+            Institute of Computer Science, College of Arts and Sciences
+          </p>
+
+
+          <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 font-mono uppercase tracking-widest text-on-surface-variant text-[0.65rem]">
+            <span><span aria-hidden="true">→ </span>LOS BAÑOS, LAGUNA</span>
           </div>
-          <svg className="w-5 h-5 text-on-surface-variant/40 group-hover:text-primary/60 transition-colors duration-200 ml-auto shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-          </svg>
-        </a>
-      </m.div>
+        </m.article>
       </div>
     </section>
-  )
+  );
 }
-
-export default Education

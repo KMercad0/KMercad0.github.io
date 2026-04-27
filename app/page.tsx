@@ -1,17 +1,19 @@
+import dynamic from 'next/dynamic'
 import SplashScreen from '@/components/SplashScreen'
 import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
 import Education from '@/components/Education'
 import Projects from '@/components/Projects'
-import Experience from '@/components/Experience'
-import Skills from '@/components/Skills'
-import Contact from '@/components/Contact'
-import Cotton from '@/components/Cotton'
-import Footer from '@/components/Footer'
+
+const Experience = dynamic(() => import('@/components/Experience'))
+const Skills = dynamic(() => import('@/components/Skills'))
+const About = dynamic(() => import('@/components/About'))
+const Cotton = dynamic(() => import('@/components/Cotton'))
+const Footer = dynamic(() => import('@/components/Footer'))
 
 export default function Home() {
   return (
-    <main className="grid-pattern">
+    <main>
       <SplashScreen />
       <Navigation />
       <Hero />
@@ -19,7 +21,7 @@ export default function Home() {
       <Projects />
       <Experience />
       <Skills />
-      <Contact />
+      <About />
       <Cotton />
       <Footer />
     </main>

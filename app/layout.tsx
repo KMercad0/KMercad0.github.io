@@ -1,26 +1,27 @@
 import type { Metadata } from 'next'
-import { Newsreader, Space_Grotesk, JetBrains_Mono } from 'next/font/google'
+import { Geist, IBM_Plex_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
 import { Providers } from './providers'
 import './globals.css'
 
-const newsreader = Newsreader({
-  subsets: ['latin'],
-  variable: '--font-newsreader',
+const clashDisplay = localFont({
+  src: '../public/fonts/ClashDisplay-Variable.woff2',
+  variable: '--font-clash',
   display: 'swap',
-  style: ['normal', 'italic'],
+  weight: '200 700',
   fallback: ['Georgia', 'serif'],
 })
 
-const spaceGrotesk = Space_Grotesk({
+const geist = Geist({
   subsets: ['latin'],
-  variable: '--font-space-grotesk',
+  variable: '--font-geist',
   display: 'swap',
   fallback: ['system-ui', 'sans-serif'],
 })
 
-const jetbrainsMono = JetBrains_Mono({
+const plex = IBM_Plex_Mono({
   subsets: ['latin'],
-  variable: '--font-jetbrains',
+  variable: '--font-plex',
   display: 'swap',
   weight: ['400', '500'],
   fallback: ['Menlo', 'Consolas', 'monospace'],
@@ -54,9 +55,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${newsreader.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`dark ${clashDisplay.variable} ${geist.variable} ${plex.variable}`}
     >
-      <body className="bg-background text-on-surface antialiased font-body selection:bg-primary selection:text-on-primary-fixed overflow-x-hidden">
+      <body className="bg-background text-on-surface antialiased font-sans selection:bg-primary selection:text-on-primary-fixed overflow-x-hidden">
         <Providers>{children}</Providers>
       </body>
     </html>

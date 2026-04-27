@@ -1,76 +1,101 @@
-'use client'
+'use client';
 
-import { m } from 'motion/react'
+import { m } from 'motion/react';
+import { Fragment } from 'react';
+import LazyVideo from './LazyVideo';
 
-const categories = [
-  {
-    label: 'Languages',
-    skills: ['JavaScript', 'TypeScript', 'Python', 'PHP', 'Java', 'Dart'],
-  },
-  {
-    label: 'Frontend',
-    skills: ['React', 'Next.js', 'Tailwind CSS', 'HTML5 / CSS3'],
-  },
-  {
-    label: 'Backend',
-    skills: ['Node.js', 'Express.js', 'PHP Laravel', 'REST APIs'],
-  },
-  {
-    label: 'Databases',
-    skills: ['PostgreSQL', 'MongoDB', 'Supabase (pgvector)', 'Firebase'],
-  },
-  {
-    label: 'AI / ML',
-    skills: ['Anthropic API', 'Voyage AI', 'RAG Pipelines', 'LLM Integration', 'Vector Search'],
-  },
-  {
-    label: 'DevOps',
-    skills: ['Docker', 'GitHub Actions', 'CI/CD', 'Railway', 'Vercel', 'Ubuntu Linux'],
-  },
-  {
-    label: 'Tools',
-    skills: ['Git / GitHub', 'WordPress', 'Figma', 'Postman'],
-  },
-]
+/**
+ * Skills — "tools of the trade"
+ * Two-column list (category label left, separator-joined skills right).
+ */
 
-const Skills = () => {
+type Category = { label: string; skills: string[] };
+
+const categories: Category[] = [
+  { label: '// languages', skills: ['JavaScript', 'TypeScript', 'Python', 'PHP', 'Java', 'Dart'] },
+  { label: '// frontend',  skills: ['React', 'Next.js', 'Tailwind CSS', 'HTML5 / CSS3'] },
+  { label: '// backend',   skills: ['Node.js', 'Express.js', 'PHP Laravel', 'REST APIs'] },
+  { label: '// databases', skills: ['PostgreSQL', 'MongoDB', 'Supabase (pgvector)', 'Firebase'] },
+  { label: '// ai / ml',   skills: ['Anthropic API', 'Voyage AI', 'RAG Pipelines', 'LLM Integration', 'Vector Search'] },
+  { label: '// devops',    skills: ['Docker', 'GitHub Actions', 'CI/CD', 'Railway', 'Vercel', 'Ubuntu Linux'] },
+  { label: '// tools',     skills: ['Git / GitHub', 'WordPress', 'Figma', 'Postman'] },
+];
+
+const easeOut = [0.16, 1, 0.3, 1] as const;
+
+export default function Skills() {
   return (
-    <section id="skills" className="py-20 sm:py-32">
-      <div className="px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
-      <m.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        viewport={{ once: true, amount: 0.4 }}
-        className="mb-16"
-      >
-        <span className="section-label mb-2 block">// Skills</span>
-      </m.div>
+    <section
+      id="skills"
+      className="relative w-full overflow-hidden py-24 md:py-32 text-on-surface"
+    >
+      {/* Video bg */}
+      <LazyVideo
+        src="/videos/skills.mp4"
+        mobileSrc="/videos/skills_mobile.mp4"
+      />
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        {categories.map((cat, i) => (
-          <m.div
-            key={cat.label}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut', delay: i * 0.08 }}
-            viewport={{ once: true, amount: 0.4 }}
-            className="card p-4 sm:p-6 space-y-4"
-          >
-            <h3 className="text-xs font-label text-primary uppercase tracking-[0.2em]">
-              {cat.label}
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {cat.skills.map((skill) => (
-                <span key={skill} className="tag">{skill}</span>
-              ))}
-            </div>
-          </m.div>
-        ))}
-      </div>
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-[1] bg-gradient-to-b from-black/85 via-black/80 to-black/85"
+      />
+
+      <div className="relative z-10 mx-auto w-full max-w-screen-2xl px-4 sm:px-6 md:px-8">
+        {/* Header */}
+        <m.header
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: easeOut }}
+          className="mb-12 md:mb-16"
+        >
+          <p className="font-mono uppercase tracking-[0.2em] text-primary text-[0.7rem]">
+            // skills
+          </p>
+
+        </m.header>
+
+        {/* Categories */}
+        <div className="divide-y divide-outline-variant/20">
+          {categories.map((cat, i) => (
+            <m.div
+              key={cat.label}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: i * 0.08, ease: easeOut }}
+              className="grid grid-cols-1 gap-4 py-6 md:grid-cols-12 md:py-8"
+            >
+              <div className="md:col-span-3">
+                <span className="font-mono uppercase tracking-[0.2em] text-primary text-[0.75rem]">
+                  {cat.label}
+                </span>
+              </div>
+
+              <div className="md:col-span-9">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                  {cat.skills.map((skill, j) => (
+                    <Fragment key={skill}>
+                      <span
+                        className="font-mono uppercase tracking-[0.16em] text-on-surface-variant
+                                   transition-colors duration-200 hover:text-on-surface text-[0.8rem]"
+                      >
+                        {skill}
+                      </span>
+                      {j < cat.skills.length - 1 && (
+                        <span
+                          aria-hidden="true"
+                          className="h-1 w-1 rounded-full bg-primary/40"
+                        />
+                      )}
+                    </Fragment>
+                  ))}
+                </div>
+              </div>
+            </m.div>
+          ))}
+        </div>
       </div>
     </section>
-  )
+  );
 }
-
-export default Skills

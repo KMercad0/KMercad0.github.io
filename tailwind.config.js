@@ -9,12 +9,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        headline: ['var(--font-newsreader)', 'Newsreader', 'serif'],
-        body: ['var(--font-space-grotesk)', 'Space Grotesk', 'sans-serif'],
-        label: ['var(--font-space-grotesk)', 'Space Grotesk', 'monospace'],
-        serif: ['var(--font-newsreader)', 'Newsreader', 'serif'],
-        sans: ['var(--font-space-grotesk)', 'Space Grotesk', 'sans-serif'],
-        mono: ['var(--font-jetbrains)', 'Menlo', 'Consolas', 'monospace'],
+        display: ['var(--font-clash)', 'Georgia', 'serif'],
+        sans: ['var(--font-geist)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-plex)', 'Menlo', 'Consolas', 'monospace'],
       },
       colors: {
         'primary': '#ff9157',
