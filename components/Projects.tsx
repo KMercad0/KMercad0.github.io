@@ -41,7 +41,7 @@ const personal: Project[] = [
       'Full RAG pipeline: PDF ingestion → chunking → Voyage embeddings → pgvector search → Anthropic streaming. Deployed on Railway + Vercel with Supabase RLS for per-user isolation.',
     tech: ['React', 'TypeScript', 'Node.js', 'Supabase', 'pgvector', 'Anthropic API', 'Docker'],
     image: '/images/mht4.png',
-    links: [{ label: 'VIEW CODE', href: '#' }],
+    links: [{ label: 'VIEW CODE', href: 'https://github.com/KMercad0/MayHapotTabi' }],
     span: 8,
   },
   {
@@ -53,8 +53,8 @@ const personal: Project[] = [
     tech: ['Next.js', 'React', 'Tailwind'],
     image: '/images/peaksnpedals.webp',
     links: [
-      { label: 'VIEW CODE', href: '#' },
-      { label: 'LIVE SITE', href: '#' },
+      { label: 'VIEW CODE', href: 'https://github.com/KMercad0/Peaks-Pedals-Landing-Page' },
+      { label: 'LIVE SITE', href: 'https://peaksnpedals.com' },
     ],
     span: 4,
     cottonsPick: true,
@@ -67,7 +67,7 @@ const personal: Project[] = [
       'Desktop tool batch-watermarking PDFs from CSV. Built for Bicol University ATLAS. Adjustable opacity + density.',
     tech: ['Python', 'PyMuPDF', 'pandas', 'tkinter', 'Pillow'],
     image: '/images/iwasleak.png',
-    links: [{ label: 'VIEW CODE', href: '#' }],
+    links: [{ label: 'VIEW CODE', href: 'https://github.com/KMercad0/Iwas-Leak' }],
     span: 6,
   },
   {
@@ -79,8 +79,8 @@ const personal: Project[] = [
     tech: ['React', 'TypeScript', 'Supabase', 'Cloudflare R2', 'Tailwind', 'Vercel'],
     image: '/images/tuklasnindunong.png',
     links: [
-      { label: 'VIEW CODE', href: '#' },
-      { label: 'LIVE SITE', href: '#' },
+      { label: 'VIEW CODE', href: 'https://github.com/KMercad0/tuklasnindunong' },
+      { label: 'LIVE SITE', href: 'https://tuklasnindunong.vercel.app' },
     ],
     span: 6,
   },
@@ -94,7 +94,7 @@ const academic: Project[] = [
     description: 'GIS-enabled housing app for UPLB managing 50+ units with Leaflet map.',
     tech: ['React', 'Node.js', 'MongoDB', 'Leaflet.js', 'Firebase'],
     image: '/images/uHOME_MAP.webp',
-    links: [{ label: 'VIEW CODE', href: '#' }],
+    links: [{ label: 'VIEW CODE', href: 'https://github.com/KMercad0/uHome-Public' }],
     span: 4,
   },
   {
@@ -104,7 +104,7 @@ const academic: Project[] = [
     description: 'MERN marketplace connecting farmers to consumers.',
     tech: ['React', 'Node', 'Express', 'MongoDB'],
     image: '/images/100.png',
-    links: [{ label: 'VIEW CODE', href: '#' }],
+    links: [{ label: 'VIEW CODE', href: 'https://github.com/CMSC100-1S2324/project-KMercad0' }],
     span: 4,
   },
   {
@@ -114,7 +114,7 @@ const academic: Project[] = [
     description: '3D simulation with collision, color, camera controls.',
     tech: ['WebGL', 'JavaScript'],
     image: '/images/161.png',
-    links: [{ label: 'VIEW CODE', href: '#' }],
+    links: [{ label: 'VIEW CODE', href: 'https://github.com/CMSC161/Project' }],
     span: 4,
   },
   {
@@ -123,7 +123,7 @@ const academic: Project[] = [
     title: 'Elbi Donation System',
     description: 'Flutter mobile app for donations with Firebase Auth.',
     tech: ['Flutter', 'Dart', 'Firebase'],
-    links: [{ label: 'VIEW CODE', href: '#' }],
+    links: [{ label: 'VIEW CODE', href: 'https://github.com/dominiclaserna/cmsc23Project' }],
     span: 4,
   },
   {
@@ -132,7 +132,7 @@ const academic: Project[] = [
     title: 'ELBeds',
     description: 'Django accommodation search platform for Los Baños.',
     tech: ['Python', 'Django', 'MongoDB'],
-    links: [{ label: 'VIEW CODE', href: '#' }],
+    links: [{ label: 'VIEW CODE', href: 'https://github.com/sadgezy/CMSC-128-STALS' }],
     span: 4,
   },
 ];
