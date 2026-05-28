@@ -19,12 +19,13 @@ type Item = {
 };
 
 const items: Item[] = [
-  { index: '01', label: '// projects',   href: '#projects',   id: 'projects'   },
-  { index: '02', label: '// experience', href: '#experience', id: 'experience' },
-  { index: '03', label: '// skills',     href: '#skills',     id: 'skills'     },
-  { index: '04', label: '// about',      href: '#about',      id: 'about'      },
-  { index: '05', label: '// cotton',     href: '#cotton',     id: 'cotton'     },
-  { index: '06', label: '// resume',     href: '/images/Mercado_Resume.pdf', outbound: true, download: true },
+  { index: '01', label: '// automations', href: '#automations', id: 'automations' },
+  { index: '02', label: '// projects',   href: '#projects',   id: 'projects'   },
+  { index: '03', label: '// experience', href: '#experience', id: 'experience' },
+  { index: '04', label: '// skills',     href: '#skills',     id: 'skills'     },
+  { index: '05', label: '// about',      href: '#about',      id: 'about'      },
+  { index: '06', label: '// cotton',     href: '#cotton',     id: 'cotton'     },
+  { index: '07', label: '// resume',     href: '/images/Mercado_Resume.pdf', outbound: true, download: true },
 ];
 
 // Phosphor inline icons (regular)

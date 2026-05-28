@@ -5,6 +5,7 @@ import Hero from '@/components/Hero'
 import Education from '@/components/Education'
 import Projects from '@/components/Projects'
 
+const Automations = dynamic(() => import('@/components/Automations'))
 const Experience = dynamic(() => import('@/components/Experience'))
 const Skills = dynamic(() => import('@/components/Skills'))
 const About = dynamic(() => import('@/components/About'))
@@ -18,6 +19,7 @@ export default function Home() {
       <Navigation />
       <Hero />
       <Education />
+      <Automations />
       <Projects />
       <Experience />
       <Skills />

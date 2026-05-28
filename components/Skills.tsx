@@ -2,7 +2,7 @@
 
 import { m } from 'motion/react';
 import { Fragment } from 'react';
-import LazyVideo from './LazyVideo';
+import StarfieldBackground from './StarfieldBackground';
 
 /**
  * Skills — "tools of the trade"
@@ -27,18 +27,10 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative w-full overflow-hidden py-24 md:py-32 text-on-surface"
+      className="relative w-full overflow-hidden bg-background py-24 md:py-32 text-on-surface"
     >
-      {/* Video bg */}
-      <LazyVideo
-        src="/videos/skills.mp4"
-        mobileSrc="/videos/skills_mobile.mp4"
-      />
-
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 z-[1] bg-gradient-to-b from-black/85 via-black/80 to-black/85"
-      />
+      {/* Static starfield bg (shared with Education) */}
+      <StarfieldBackground noiseId="skills-noise" />
 
       <div className="relative z-10 mx-auto w-full max-w-screen-2xl px-4 sm:px-6 md:px-8">
         {/* Header */}
