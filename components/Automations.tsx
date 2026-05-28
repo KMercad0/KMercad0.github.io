@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { m, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
@@ -17,9 +17,9 @@ import LazyVideo from './LazyVideo';
  *   on-surface #ffffff · on-surface-variant #ababab · outline-variant #484848
  */
 
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Types & data
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 type Automation = {
   id: string;
@@ -44,7 +44,7 @@ const automations: Automation[] = [
     flow: ['Sheets trigger', 'Claude draft', 'Slack approval', 'Wait webhook', 'Publish / Reject'],
     stats: '16 nodes · 3 integrations',
     tech: ['n8n', 'Anthropic Claude', 'Google Sheets', 'Slack'],
-    poster: '/images/contentpipeline.png',
+    poster: '/images/contentpipeline.webp',
     youTubeId: '',
     workflowHref: undefined,
     span: 8,
@@ -57,7 +57,7 @@ const automations: Automation[] = [
     flow: ['Webhook', 'KB lookup', 'Claude triage', 'Auto-reply / Escalate', 'Sheets log'],
     stats: '17 nodes · 4 integrations',
     tech: ['n8n', 'Anthropic Claude', 'Gmail', 'Slack', 'Google Sheets'],
-    poster: '/images/customertriage.png',
+    poster: '/images/customertriage.webp',
     youTubeId: '',
     workflowHref: undefined,
     span: 4,
@@ -70,7 +70,7 @@ const automations: Automation[] = [
     flow: ['Webhook', 'Claude qualify', 'Hot → HubSpot + Slack', 'Warm → Slack', 'Sheets log'],
     stats: '14 nodes · 4 integrations',
     tech: ['n8n', 'Anthropic Claude', 'HubSpot', 'Slack', 'Google Sheets'],
-    poster: '/images/leadcapture.png',
+    poster: '/images/leadcapture.webp',
     youTubeId: '',
     workflowHref: undefined,
     span: 4,
@@ -83,16 +83,16 @@ const automations: Automation[] = [
     flow: ['Webhook', 'On-time calc', 'Slack notify', 'Sheets append'],
     stats: '4 nodes · 2 integrations',
     tech: ['n8n', 'Slack', 'Google Sheets'],
-    poster: '/images/hvacjobcheck.png',
+    poster: '/images/hvacjobcheck.webp',
     youTubeId: '',
     workflowHref: undefined,
     span: 4,
   },
 ];
 
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Icons
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function PlayIcon({ className = 'h-5 w-5' }: { className?: string }) {
   return (
@@ -138,9 +138,9 @@ function CloseIcon({ className = 'h-5 w-5' }: { className?: string }) {
   );
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Card
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function AutomationCard({
   item,
@@ -283,9 +283,9 @@ function AutomationCard({
   );
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Section
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export default function Automations() {
   const [video, setVideo] = useState<{ id: string; title: string } | null>(null);

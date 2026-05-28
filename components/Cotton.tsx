@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { m } from 'motion/react';
 
@@ -12,10 +12,10 @@ const easeOut = [0.16, 1, 0.3, 1] as const;
 type Photo = { src: string; caption: string; rotate: number };
 
 const photos: Photo[] = [
-  { src: '/images/c1.png', caption: 'cotton.jpg · 001', rotate: -2 },
-  { src: '/images/c2.png', caption: 'cotton.jpg · 002', rotate:  1 },
-  { src: '/images/c3.png', caption: 'cotton.jpg · 003', rotate: -1 },
-  { src: '/images/c4.png', caption: 'cotton.jpg · 004', rotate:  2 },
+  { src: '/images/c1.webp', caption: 'cotton.jpg · 001', rotate: -2 },
+  { src: '/images/c2.webp', caption: 'cotton.jpg · 002', rotate:  1 },
+  { src: '/images/c3.webp', caption: 'cotton.jpg · 003', rotate: -1 },
+  { src: '/images/c4.webp', caption: 'cotton.jpg · 004', rotate:  2 },
 ];
 
 export default function Cotton() {
@@ -66,6 +66,8 @@ export default function Cotton() {
               <img
                 src={photo.src}
                 alt={`Cotton — ${photo.caption}`}
+                width={540}
+                height={540}
                 className="aspect-square w-full bg-surface-container object-cover"
                 loading="lazy"
               />

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { m, AnimatePresence } from 'motion/react';
 import { useCallback, useEffect, useState } from 'react';
@@ -69,7 +69,7 @@ export default function SplashScreen() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-background px-6"
         >
-          {/* ── Atmosphere layers ────────────────────────────────────── */}
+          {/* â”€â”€ Atmosphere layers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
 
           {/* Fractal noise */}
           <svg
@@ -99,7 +99,7 @@ export default function SplashScreen() {
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_50%_50%,rgba(255,145,87,0.05),transparent_70%)]"
           />
 
-          {/* ── Top-left brand stamp ─────────────────────────────────── */}
+          {/* â”€â”€ Top-left brand stamp â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
           <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -111,7 +111,7 @@ export default function SplashScreen() {
             </p>
           </m.div>
 
-          {/* ── Bottom-right timestamp ───────────────────────────────── */}
+          {/* â”€â”€ Bottom-right timestamp â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
           <m.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -121,7 +121,7 @@ export default function SplashScreen() {
             // transmission · {new Date().getFullYear()}
           </m.p>
 
-          {/* ── Center stack ─────────────────────────────────────────── */}
+          {/* â”€â”€ Center stack â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
           <div className="relative z-10 flex w-full max-w-md flex-col items-center gap-8 text-center">
             {/* Eyebrow */}
             <m.p
@@ -142,8 +142,10 @@ export default function SplashScreen() {
               style={{ filter: 'drop-shadow(0 0 40px rgba(255,145,87,0.15))' }}
             >
               <img
-                src="/images/c4.png"
+                src="/images/c4.webp"
                 alt="Cotton"
+                width={540}
+                height={720}
                 className="h-full w-full object-cover"
               />
             </m.div>

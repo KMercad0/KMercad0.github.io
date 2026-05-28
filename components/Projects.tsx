@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { m, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
@@ -14,9 +14,9 @@ import LazyVideo from './LazyVideo';
  *   on-surface #ffffff · on-surface-variant #ababab · outline-variant #484848
  */
 
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Types & data
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 type Link = { label: 'VIEW CODE' | 'LIVE SITE'; href: string };
 
@@ -40,7 +40,7 @@ const personal: Project[] = [
     description:
       'Full RAG pipeline: PDF ingestion → chunking → Voyage embeddings → pgvector search → Anthropic streaming. Deployed on Railway + Vercel with Supabase RLS for per-user isolation.',
     tech: ['React', 'TypeScript', 'Node.js', 'Supabase', 'pgvector', 'Anthropic API', 'Docker'],
-    image: '/images/mht4.png',
+    image: '/images/mht4.webp',
     links: [{ label: 'VIEW CODE', href: 'https://github.com/KMercad0/MayHapotTabi' }],
     span: 8,
   },
@@ -66,7 +66,7 @@ const personal: Project[] = [
     description:
       'Desktop tool batch-watermarking PDFs from CSV. Built for Bicol University ATLAS. Adjustable opacity + density.',
     tech: ['Python', 'PyMuPDF', 'pandas', 'tkinter', 'Pillow'],
-    image: '/images/iwasleak.png',
+    image: '/images/iwasleak.webp',
     links: [{ label: 'VIEW CODE', href: 'https://github.com/KMercad0/Iwas-Leak' }],
     span: 6,
   },
@@ -77,7 +77,7 @@ const personal: Project[] = [
     description:
       'Volunteer-built research paper archive for a local high school. Search by title, keyword, grade, year. Privacy-first per RA 10173.',
     tech: ['React', 'TypeScript', 'Supabase', 'Cloudflare R2', 'Tailwind', 'Vercel'],
-    image: '/images/tuklasnindunong.png',
+    image: '/images/tuklasnindunong.webp',
     links: [
       { label: 'VIEW CODE', href: 'https://github.com/KMercad0/tuklasnindunong' },
       { label: 'LIVE SITE', href: 'https://tuklasnindunong.vercel.app' },
@@ -103,7 +103,7 @@ const academic: Project[] = [
     title: 'DA E-commerce',
     description: 'MERN marketplace connecting farmers to consumers.',
     tech: ['React', 'Node', 'Express', 'MongoDB'],
-    image: '/images/100.png',
+    image: '/images/100.webp',
     links: [{ label: 'VIEW CODE', href: 'https://github.com/CMSC100-1S2324/project-KMercad0' }],
     span: 4,
   },
@@ -113,7 +113,7 @@ const academic: Project[] = [
     title: 'WebGL Bouncing Cube',
     description: '3D simulation with collision, color, camera controls.',
     tech: ['WebGL', 'JavaScript'],
-    image: '/images/161.png',
+    image: '/images/161.webp',
     links: [{ label: 'VIEW CODE', href: 'https://github.com/CMSC161/Project' }],
     span: 4,
   },
@@ -137,9 +137,9 @@ const academic: Project[] = [
   },
 ];
 
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Icons
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 // Phosphor "PawPrint" — inline so we don't add a dep.
 function PawPrint({ className = 'h-3 w-3' }: { className?: string }) {
@@ -191,9 +191,9 @@ function ArrowRight({ className = 'h-3 w-3' }: { className?: string }) {
   );
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Card
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function ProjectCard({
   project,
@@ -322,9 +322,9 @@ function ProjectCard({
   );
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Section
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export default function Projects() {
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);

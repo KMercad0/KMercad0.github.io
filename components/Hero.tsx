@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { m } from 'motion/react';
 import LazyVideo from './LazyVideo';
@@ -135,8 +135,10 @@ export default function Hero() {
           >
             <div className="aspect-[3/4] w-full overflow-hidden rounded-sm bg-surface-container-highest">
               <img
-                src="/images/c1.png"
+                src="/images/c1.webp"
                 alt="Cotton — Chief Dog Officer"
+                width={540}
+                height={720}
                 className="h-full w-full object-cover"
                 loading="eager"
               />
