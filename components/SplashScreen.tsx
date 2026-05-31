@@ -69,7 +69,7 @@ export default function SplashScreen() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-background px-6"
         >
-          {/* â”€â”€ Atmosphere layers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+          {/* Atmosphere layers */}
 
           {/* Fractal noise */}
           <svg
@@ -99,7 +99,7 @@ export default function SplashScreen() {
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_50%_50%,rgba(255,145,87,0.05),transparent_70%)]"
           />
 
-          {/* â”€â”€ Top-left brand stamp â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+          {/* Top-left brand stamp */}
           <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -111,7 +111,7 @@ export default function SplashScreen() {
             </p>
           </m.div>
 
-          {/* â”€â”€ Bottom-right timestamp â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+          {/* Bottom-right timestamp */}
           <m.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -121,7 +121,7 @@ export default function SplashScreen() {
             // transmission · {new Date().getFullYear()}
           </m.p>
 
-          {/* â”€â”€ Center stack â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+          {/* Center stack */}
           <div className="relative z-10 flex w-full max-w-md flex-col items-center gap-8 text-center">
             {/* Eyebrow */}
             <m.p

@@ -14,11 +14,9 @@ import LazyVideo from './LazyVideo';
  *   on-surface #ffffff · on-surface-variant #ababab · outline-variant #484848
  */
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Types & data
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-type Link = { label: 'VIEW CODE' | 'LIVE SITE'; href: string };
+type Link = { label: 'VIEW CODE' | 'LIVE SITE' | 'ORIGINAL'; href: string };
 
 type Project = {
   id: string;
@@ -27,6 +25,8 @@ type Project = {
   description: string;
   tech: string[];
   image?: string;
+  backdrop?: string;       // tailwind classes for a color layer behind a transparent image
+  lightOverlay?: boolean;  // softer gradient for dark/transparent images that the default overlay hides
   links: Link[];
   span?: 4 | 6 | 8;        // md:col-span-{n}
   cottonsPick?: boolean;
@@ -58,6 +58,34 @@ const personal: Project[] = [
     ],
     span: 4,
     cottonsPick: true,
+  },
+  {
+    id: 'lockin',
+    label: 'FOCUS / APP BLOCKER',
+    title: 'LockIn',
+    description:
+      'Windows app that locks distracting apps behind a 4-level friction gauntlet — escalating confirmations, typing challenges, a meme quiz, then hash-your-own-password. Real-time process kills via WMI Win32_ProcessStartTrace.',
+    tech: ['C#', '.NET 8', 'WPF', 'WMI', 'MVVM', 'xUnit'],
+    image: '/images/Lockin.webp',
+    lightOverlay: true,
+    links: [{ label: 'VIEW CODE', href: 'https://github.com/KMercad0/LockIn' }],
+    span: 6,
+  },
+  {
+    id: 'agentrocky-windows',
+    label: 'DESKTOP COMPANION',
+    title: 'Rocky for Windows',
+    description:
+      'Windows port of agentrocky — a desktop pet that walks across your screen and chats with Claude Code. Original macOS app and sprite art by @itmesneha.',
+    tech: ['Python', 'PyQt6', 'Claude Code', 'MCP', 'stream-json'],
+    image: '/images/Rocky.webp',
+    backdrop: 'bg-gradient-to-br from-primary/25 via-surface-container-high to-background',
+    lightOverlay: true,
+    links: [
+      { label: 'VIEW CODE', href: 'https://github.com/KMercad0/agentrocky-windows' },
+      { label: 'ORIGINAL', href: 'https://github.com/itmesneha' },
+    ],
+    span: 6,
   },
   {
     id: 'iwas-leak',
@@ -137,9 +165,7 @@ const academic: Project[] = [
   },
 ];
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Icons
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 // Phosphor "PawPrint" — inline so we don't add a dep.
 function PawPrint({ className = 'h-3 w-3' }: { className?: string }) {
@@ -191,9 +217,7 @@ function ArrowRight({ className = 'h-3 w-3' }: { className?: string }) {
   );
 }
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Card
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function ProjectCard({
   project,
@@ -233,14 +257,23 @@ function ProjectCard({
       {/* Background image + overlay */}
       {project.image && (
         <>
+          {project.backdrop && (
+            <div
+              className={`pointer-events-none absolute inset-0 -z-10 ${project.backdrop}`}
+              aria-hidden="true"
+            />
+          )}
           <div
             className="pointer-events-none absolute inset-0 -z-10 bg-cover bg-center"
             style={{ backgroundImage: `url(${project.image})` }}
             aria-hidden="true"
           />
           <div
-            className="pointer-events-none absolute inset-0 -z-10
-                       bg-gradient-to-br from-black/90 via-black/75 to-black/55"
+            className={`pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br ${
+              project.lightOverlay
+                ? 'from-black/80 via-black/50 to-black/20'
+                : 'from-black/90 via-black/75 to-black/55'
+            }`}
             aria-hidden="true"
           />
         </>
@@ -322,9 +355,7 @@ function ProjectCard({
   );
 }
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Section
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export default function Projects() {
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
