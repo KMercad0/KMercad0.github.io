@@ -60,6 +60,31 @@ const personal: Project[] = [
     cottonsPick: true,
   },
   {
+    id: 'ceer',
+    label: 'STUDY / QUIZ PLATFORM',
+    title: 'UPCAT Reviewer',
+    description:
+      'Mobile-first UPCAT prep platform, live in production. Shuffled MCQ quizzes with server-side grading, progress by subject/topic/difficulty, streaks, and anonymous class-rank percentiles. The answer key never reaches the client — enforced at the database with Postgres RLS + SECURITY DEFINER RPCs.',
+    tech: ['Next.js 16', 'React 19', 'TypeScript', 'Supabase', 'PostgreSQL', 'RLS', 'Tailwind'],
+    image: '/images/ceer.webp',
+    lightOverlay: true,
+    links: [
+      { label: 'VIEW CODE', href: 'https://github.com/KMercad0/CEER' },
+      { label: 'LIVE SITE', href: 'https://uphinay-ceer.vercel.app' },
+    ],
+    span: 8,
+  },
+  {
+    id: 'consistency-alarm',
+    label: 'FOCUS TIMER',
+    title: 'Consistency Alarm',
+    description:
+      'A descending Pomodoro timer — five shrinking work blocks (50 → 40 → 30 → 20 → 10) across one ~3-hour sitting, with sound cues at every work/break transition. Zero-dependency static app.',
+    tech: ['JavaScript', 'HTML', 'CSS'],
+    links: [{ label: 'VIEW CODE', href: 'https://github.com/KMercad0/consistency-alarm' }],
+    span: 4,
+  },
+  {
     id: 'lockin',
     label: 'FOCUS / APP BLOCKER',
     title: 'LockIn',
@@ -110,6 +135,16 @@ const personal: Project[] = [
       { label: 'VIEW CODE', href: 'https://github.com/KMercad0/tuklasnindunong' },
       { label: 'LIVE SITE', href: 'https://tuklasnindunong.vercel.app' },
     ],
+    span: 6,
+  },
+  {
+    id: 'repo-radar',
+    label: 'DEV TOOL',
+    title: 'Repo Radar',
+    description:
+      "Type a technology and instantly see who's building the most-starred projects in that space. Live GitHub Search API — no login, no key. Single-file app with top-language insight, animated results, and graceful rate-limit handling.",
+    tech: ['JavaScript', 'HTML', 'CSS', 'GitHub API'],
+    links: [{ label: 'VIEW CODE', href: 'https://github.com/KMercad0/repo-radar' }],
     span: 6,
   },
 ];
