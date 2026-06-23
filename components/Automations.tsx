@@ -32,7 +32,7 @@ type Automation = {
   span?: 4 | 8;             // md:col-span-{n}
 };
 
-// Repo is private; walkthrough videos + posters to follow.
+// Source JSON is public on GitHub (KMercad0/n8n-projects); walkthrough videos to follow.
 const automations: Automation[] = [
   {
     id: 'content-pipeline',
@@ -44,7 +44,7 @@ const automations: Automation[] = [
     tech: ['n8n', 'Anthropic Claude', 'Google Sheets', 'Slack'],
     poster: '/images/contentpipeline.webp',
     youTubeId: '',
-    workflowHref: undefined,
+    workflowHref: 'https://github.com/KMercad0/n8n-projects/tree/main/Content%20Pipeline',
     span: 8,
   },
   {
@@ -57,7 +57,7 @@ const automations: Automation[] = [
     tech: ['n8n', 'Anthropic Claude', 'Gmail', 'Slack', 'Google Sheets'],
     poster: '/images/customertriage.webp',
     youTubeId: '',
-    workflowHref: undefined,
+    workflowHref: 'https://github.com/KMercad0/n8n-projects/tree/main/Customer%20Support%20Ticket%20Triage',
     span: 4,
   },
   {
@@ -70,7 +70,7 @@ const automations: Automation[] = [
     tech: ['n8n', 'Anthropic Claude', 'HubSpot', 'Slack', 'Google Sheets'],
     poster: '/images/leadcapture.webp',
     youTubeId: '',
-    workflowHref: undefined,
+    workflowHref: 'https://github.com/KMercad0/n8n-projects/tree/main/Lead%20Capture',
     span: 4,
   },
   {
@@ -83,7 +83,7 @@ const automations: Automation[] = [
     tech: ['n8n', 'Slack', 'Google Sheets'],
     poster: '/images/hvacjobcheck.webp',
     youTubeId: '',
-    workflowHref: undefined,
+    workflowHref: 'https://github.com/KMercad0/n8n-projects/tree/main/HVAC%20Demo',
     span: 4,
   },
 ];
@@ -312,7 +312,7 @@ export default function Automations() {
             automation builds
           </h2>
           <p className="mt-4 max-w-2xl font-sans leading-relaxed text-on-surface-variant text-sm sm:text-base">
-            Self-built n8n workflows — each with a short walkthrough video. Source JSON lives in a private repo; available to clients on request.
+            Self-built n8n workflows. The importable JSON for each now lives in a public GitHub repo — walkthrough videos to follow.
           </p>
         </m.header>
 
