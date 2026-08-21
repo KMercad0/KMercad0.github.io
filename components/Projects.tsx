@@ -16,7 +16,7 @@ import LazyVideo from './LazyVideo';
 
 // Types & data
 
-type Link = { label: 'VIEW CODE' | 'LIVE SITE' | 'ORIGINAL'; href: string };
+type Link = { label: 'VIEW CODE' | 'LIVE SITE' | 'ORIGINAL' | 'VIEW SHOWCASE'; href: string };
 
 type Project = {
   id: string;
@@ -30,18 +30,20 @@ type Project = {
   links: Link[];
   span?: 4 | 6 | 8;        // md:col-span-{n}
   cottonsPick?: boolean;
+  private?: boolean;       // client work — repo stays closed
 };
 
 const personal: Project[] = [
   {
-    id: 'mayhapottabi',
-    label: 'AI DOCUMENT CHAT',
-    title: 'MayHapotTabi',
+    id: 'citation-desk',
+    label: 'CLIENT WORK · GOVERNMENT',
+    title: 'Municipal Citation Monitoring Desk',
     description:
-      'Full RAG pipeline: PDF ingestion → chunking → Voyage embeddings → pgvector search → Anthropic streaming. Deployed on Railway + Vercel with Supabase RLS for per-user isolation.',
-    tech: ['React', 'TypeScript', 'Node.js', 'Supabase', 'pgvector', 'Anthropic API', 'Docker'],
-    image: '/images/mht4.webp',
-    links: [{ label: 'VIEW CODE', href: 'https://github.com/KMercad0/MayHapotTabi' }],
+      'Ticket monitoring system for a municipal government, required by its own traffic ordinance. The paper ticket stays the legal document — every record is tied to the number printed on a pre-numbered booklet the state auditor counts, unique and enforced by the database. Three roles, permissions written into Postgres RLS rather than hidden buttons: officers file only their own tickets, the desk records payments and issues notices of default, admin holds the catalogs and the audit log. Screenshots use demo data.',
+    tech: ['React', 'TypeScript', 'Vite', 'Supabase', 'PostgreSQL', 'RLS', 'Tailwind', 'Vercel'],
+    image: '/images/citationdesk.webp',
+    private: true,
+    links: [{ label: 'VIEW SHOWCASE', href: '/showcase/citation-desk/' }],
     span: 8,
   },
   {
@@ -60,6 +62,27 @@ const personal: Project[] = [
     cottonsPick: true,
   },
   {
+    id: 'mayhapottabi',
+    label: 'AI DOCUMENT CHAT',
+    title: 'MayHapotTabi',
+    description:
+      'Full RAG pipeline: PDF ingestion → chunking → Voyage embeddings → pgvector search → Anthropic streaming. Deployed on Railway + Vercel with Supabase RLS for per-user isolation.',
+    tech: ['React', 'TypeScript', 'Node.js', 'Supabase', 'pgvector', 'Anthropic API', 'Docker'],
+    image: '/images/mht4.webp',
+    links: [{ label: 'VIEW CODE', href: 'https://github.com/KMercad0/MayHapotTabi' }],
+    span: 8,
+  },
+  {
+    id: 'consistency-alarm',
+    label: 'FOCUS TIMER',
+    title: 'Consistency Alarm',
+    description:
+      'A descending Pomodoro timer — five shrinking work blocks (50 → 40 → 30 → 20 → 10) across one ~3-hour sitting, with sound cues at every work/break transition. Zero-dependency static app.',
+    tech: ['JavaScript', 'HTML', 'CSS'],
+    links: [{ label: 'VIEW CODE', href: 'https://github.com/KMercad0/consistency-alarm' }],
+    span: 4,
+  },
+  {
     id: 'ceer',
     label: 'STUDY / QUIZ PLATFORM',
     title: 'UPCAT Reviewer',
@@ -75,14 +98,29 @@ const personal: Project[] = [
     span: 8,
   },
   {
-    id: 'consistency-alarm',
-    label: 'FOCUS TIMER',
-    title: 'Consistency Alarm',
+    id: 'entry-checker',
+    label: 'BROWSER EXTENSION + TOOL',
+    title: 'Entry Checker',
     description:
-      'A descending Pomodoro timer — five shrinking work blocks (50 → 40 → 30 → 20 → 10) across one ~3-hour sitting, with sound cues at every work/break transition. Zero-dependency static app.',
-    tech: ['JavaScript', 'HTML', 'CSS'],
-    links: [{ label: 'VIEW CODE', href: 'https://github.com/KMercad0/consistency-alarm' }],
+      'Verifies who actually entered a giveaway. A Chrome extension records the GraphQL responses the post already sent to the browser and writes a .har; a single-file page turns that into a pass/fail grid, a cross-post leaderboard, and a seeded, reproducible winner draw. No API, no scraping, no page-admin access — and it refuses to fake what platform policy bans, so shares stay a manual column it never claims to verify.',
+    tech: ['JavaScript', 'Chrome MV3', 'HAR', 'Web Crypto'],
+    image: '/images/entrychecker.webp',
+    lightOverlay: true,
+    private: true,
+    links: [],
     span: 4,
+  },
+  {
+    id: 'site-materials',
+    label: 'CLIENT WORK · CONSTRUCTION',
+    title: 'Site Materials Tracking',
+    description:
+      'Replaces a spreadsheet and handwritten site logbooks for a construction company. Append-only stock ledger — stock is the sum of movements, nothing is silently edited or deleted. "Unaccounted materials" is computed live from what was issued versus what site reports account for, so the gap surfaces itself instead of waiting for an audit. Prices, budgets, and payments are invisible to site and inventory roles, enforced by RLS. Mobile-first for site phones. Screenshots use demo data.',
+    tech: ['Next.js 16', 'React 19', 'TypeScript', 'Supabase', 'PostgreSQL', 'RLS', 'Tailwind'],
+    image: '/images/sitematerials.webp',
+    private: true,
+    links: [],
+    span: 6,
   },
   {
     id: 'lockin',
@@ -341,6 +379,17 @@ function ProjectCard({
           {project.title}
         </h3>
 
+        {project.private && (
+          <div
+            className="mt-3 inline-flex items-center gap-1.5 rounded-full
+                       border border-outline-variant/40 bg-black/30 px-3 py-1"
+          >
+            <span className="font-mono uppercase tracking-[0.18em] text-on-surface-variant text-[0.65rem]">
+              Private repo
+            </span>
+          </div>
+        )}
+
         {project.cottonsPick && (
           <div
             className="mt-3 inline-flex items-center gap-1.5 rounded-full
@@ -372,7 +421,7 @@ function ProjectCard({
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-5">
+        <div className="flex flex-wrap gap-5 empty:hidden">
           {project.links.map((link) => (
             <a
               key={link.label}
