@@ -3,6 +3,7 @@
 import { m, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
 import LazyVideo from './LazyVideo';
+import { ArrowRight } from './icons';
 
 /**
  * Projects — "studio log" / editorial.
@@ -40,7 +41,7 @@ const personal: Project[] = [
     title: 'Municipal Citation Monitoring Desk',
     description:
       'Ticket monitoring system for a municipal government, required by its own traffic ordinance. The paper ticket stays the legal document — every record is tied to the number printed on a pre-numbered booklet the state auditor counts, unique and enforced by the database. Three roles, permissions written into Postgres RLS rather than hidden buttons: officers file only their own tickets, the desk records payments and issues notices of default, admin holds the catalogs and the audit log. Screenshots use demo data.',
-    tech: ['React', 'TypeScript', 'Vite', 'Supabase', 'PostgreSQL', 'RLS', 'Tailwind', 'Vercel'],
+    tech: ['React', 'TypeScript', 'Vite', 'Supabase', 'PostgreSQL', 'RLS', 'Tailwind'],
     image: '/images/citationdesk.webp',
     private: true,
     // Explicit index.html: `next dev` does not resolve a bare directory URL
@@ -68,7 +69,7 @@ const personal: Project[] = [
     label: 'AI DOCUMENT CHAT',
     title: 'MayHapotTabi',
     description:
-      'Full RAG pipeline: PDF ingestion → chunking → Voyage embeddings → pgvector search → Anthropic streaming. Deployed on Railway + Vercel with Supabase RLS for per-user isolation.',
+      'Full RAG pipeline: PDF ingestion → chunking → Voyage embeddings → pgvector search → Anthropic streaming, with Supabase RLS for per-user isolation. Ran on Railway + Vercel; both instances are shut down now, so the repo is the artifact.',
     tech: ['React', 'TypeScript', 'Node.js', 'Supabase', 'pgvector', 'Anthropic API', 'Docker'],
     image: '/images/mht4.webp',
     links: [{ label: 'VIEW CODE', href: 'https://github.com/KMercad0/MayHapotTabi' }],
@@ -89,7 +90,7 @@ const personal: Project[] = [
     label: 'STUDY / QUIZ PLATFORM',
     title: 'UPCAT Reviewer',
     description:
-      'Mobile-first UPCAT prep platform, live in production. Shuffled MCQ quizzes with server-side grading, progress by subject/topic/difficulty, streaks, and anonymous class-rank percentiles. The answer key never reaches the client — enforced at the database with Postgres RLS + SECURITY DEFINER RPCs.',
+      'Mobile-first UPCAT prep platform, deployed and usable. Shuffled MCQ quizzes with server-side grading, progress by subject/topic/difficulty, streaks, and anonymous class-rank percentiles. The answer key never reaches the client — enforced at the database with Postgres RLS + SECURITY DEFINER RPCs.',
     tech: ['Next.js 16', 'React 19', 'TypeScript', 'Supabase', 'PostgreSQL', 'RLS', 'Tailwind'],
     image: '/images/ceer.webp',
     lightOverlay: true,
@@ -274,23 +275,6 @@ function MagnifierIcon({ className = 'h-4 w-4' }: { className?: string }) {
   );
 }
 
-function ArrowRight({ className = 'h-3 w-3' }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M5 12h14" />
-      <path d="m13 5 7 7-7 7" />
-    </svg>
-  );
-}
 
 // Card
 
@@ -452,10 +436,7 @@ export default function Projects() {
       className="relative w-full overflow-hidden py-24 md:py-32 text-on-surface"
     >
       {/* Video bg */}
-      <LazyVideo
-        src="/videos/projects_mobile.mp4"
-        mobileSrc="/videos/projects_mobile.mp4"
-      />
+      <LazyVideo src="/videos/projects_mobile.mp4" />
 
       {/* Dark overlay for card readability */}
       <div

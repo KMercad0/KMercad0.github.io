@@ -2,22 +2,20 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+const ROOT_MARGIN = '300px'
+
 type Props = {
   src: string
   mobileSrc?: string
-  poster?: string
   className?: string
   eager?: boolean
-  rootMargin?: string
 }
 
 export default function LazyVideo({
   src,
   mobileSrc,
-  poster,
   className = 'absolute inset-0 z-0 h-full w-full object-cover',
   eager = false,
-  rootMargin = '300px',
 }: Props) {
   const ref = useRef<HTMLVideoElement | null>(null)
   const [load, setLoad] = useState(eager)
@@ -36,11 +34,11 @@ export default function LazyVideo({
           obs.disconnect()
         }
       },
-      { rootMargin }
+      { rootMargin: ROOT_MARGIN }
     )
     obs.observe(el)
     return () => obs.disconnect()
-  }, [eager, load, rootMargin])
+  }, [eager, load])
 
   useEffect(() => {
     if (!load) return
@@ -59,7 +57,6 @@ export default function LazyVideo({
       loop
       playsInline
       preload={eager ? 'metadata' : 'none'}
-      poster={poster}
       aria-hidden="true"
     >
       {load && mobileSrc && (

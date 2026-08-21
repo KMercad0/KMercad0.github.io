@@ -1,11 +1,12 @@
 'use client';
 
 /**
- * StarfieldBackground — static cosmic backdrop (no video).
- * Extracted from Education's bg layers so other sections can reuse it.
- * Drop inside a `relative ... bg-background` section, before the z-10 content.
+ * StarfieldBackground — static cosmic backdrop (no video). Used by Education
+ * and Skills. Drop inside a `relative ... bg-background` section, before the
+ * z-10 content. noiseId must be unique per instance — the SVG filter is
+ * referenced by id, and duplicates collide.
  */
-export default function StarfieldBackground({ noiseId = 'sky-noise' }: { noiseId?: string }) {
+export default function StarfieldBackground({ noiseId }: { noiseId: string }) {
   return (
     <>
       {/* Star field — multi-layer radial dots */}

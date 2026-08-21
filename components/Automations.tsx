@@ -3,6 +3,7 @@
 import { m, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
 import LazyVideo from './LazyVideo';
+import { ArrowRight } from './icons';
 
 /**
  * Automations — n8n workflow demos.
@@ -98,23 +99,6 @@ function PlayIcon({ className = 'h-5 w-5' }: { className?: string }) {
   );
 }
 
-function ArrowRight({ className = 'h-3 w-3' }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M5 12h14" />
-      <path d="m13 5 7 7-7 7" />
-    </svg>
-  );
-}
 
 function CloseIcon({ className = 'h-5 w-5' }: { className?: string }) {
   return (
@@ -164,8 +148,10 @@ function AutomationCard({
       <button
         type="button"
         onClick={() => hasVideo && onWatch(item.youTubeId, item.title)}
+        disabled={!hasVideo}
         aria-label={hasVideo ? `Watch ${item.title} walkthrough` : `${item.title} — walkthrough coming soon`}
-        className="relative block aspect-video w-full overflow-hidden bg-surface-container-highest/60"
+        className="relative block aspect-video w-full overflow-hidden bg-surface-container-highest/60
+                   disabled:cursor-default"
       >
         {item.poster ? (
           <div
