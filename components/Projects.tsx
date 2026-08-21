@@ -43,7 +43,9 @@ const personal: Project[] = [
     tech: ['React', 'TypeScript', 'Vite', 'Supabase', 'PostgreSQL', 'RLS', 'Tailwind', 'Vercel'],
     image: '/images/citationdesk.webp',
     private: true,
-    links: [{ label: 'VIEW SHOWCASE', href: '/showcase/citation-desk/' }],
+    // Explicit index.html: `next dev` does not resolve a bare directory URL
+    // under public/, and this path works on every static host.
+    links: [{ label: 'VIEW SHOWCASE', href: '/showcase/citation-desk/index.html' }],
     span: 8,
   },
   {
