@@ -14,7 +14,7 @@ const bio = [
   'Been on the Computer ever since childhood.',
   'Played games, tweaked settings, messed around with programs.',
   'Self-taught, Self-paced, Curiosity-driven, and if I hyperfocus on a niche thing at 1 am then so be it.',
-  'ADHD brain and habits. Either locked in or crashing out.',
+  'ADHD brain. I go deep on one problem at a time, and I build the guardrails that make that dependable — written docs, and tests on the paths that cost money if they break.',
   'I work well alone. I work better with the right people.',
   'Made an Oath, Made mistakes. Pushing on through.',
 ];
