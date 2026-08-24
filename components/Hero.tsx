@@ -67,7 +67,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2, ease: easeOut }}
               className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-primary"
             >
-              // karl mercado · software developer · open to remote
+              // karl mercado · full-stack developer · remote, us / eu hours
             </m.p>
 
             <m.h1
@@ -89,7 +89,7 @@ export default function Hero() {
               <p className="text-on-surface">
                 Karl Mercado — full-stack developer. React, TypeScript, and
                 Postgres/Supabase, with the access rules written into the database.
-                Based in the Philippines, available for remote work.
+                Based in the Philippines, available for remote work on US or EU hours.
               </p>
               <p className="mt-4">A human in this AI of a world.</p>
               <p className="line-through">I also use it though</p>

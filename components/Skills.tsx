@@ -12,12 +12,12 @@ import StarfieldBackground from './StarfieldBackground';
 type Category = { label: string; skills: string[] };
 
 const categories: Category[] = [
-  { label: '// languages', skills: ['JavaScript', 'TypeScript', 'Python', 'PHP', 'Java', 'Dart'] },
-  { label: '// frontend',  skills: ['React', 'Next.js', 'Tailwind CSS', 'HTML5 / CSS3'] },
-  { label: '// backend',   skills: ['Node.js', 'Express.js', 'PHP Laravel', 'REST APIs'] },
-  { label: '// databases', skills: ['PostgreSQL', 'MongoDB', 'Supabase (pgvector)', 'Firebase'] },
-  { label: '// ai / ml',   skills: ['Anthropic API', 'Voyage AI', 'RAG Pipelines', 'LLM Integration', 'Vector Search'] },
-  { label: '// devops',    skills: ['Docker', 'GitHub Actions', 'CI/CD', 'Railway', 'Vercel', 'Ubuntu Linux'] },
+  { label: '// languages', skills: ['JavaScript', 'TypeScript', 'Python', 'PHP', 'Java', 'C#'] },
+  { label: '// frontend',  skills: ['React', 'Next.js', 'Tailwind CSS', 'Vite', 'HTML5 / CSS3'] },
+  { label: '// backend',   skills: ['Node.js', 'Express.js', 'PHP Laravel', '.NET 8', 'REST APIs', 'Server Actions'] },
+  { label: '// databases', skills: ['PostgreSQL', 'Row-Level Security', 'PL/pgSQL', 'pgvector', 'MongoDB', 'Firebase'] },
+  { label: '// ai / ml',   skills: ['Anthropic API', 'Voyage AI', 'RAG Pipelines', 'Vector Search', 'Structured JSON Output'] },
+  { label: '// devops',    skills: ['Docker', 'GitHub Actions', 'CI/CD', 'Railway', 'Vercel', 'Ubuntu Linux', 'Self-hosted n8n'] },
   { label: '// tools',     skills: ['Git / GitHub', 'WordPress', 'Figma', 'Postman'] },
 ];
 
