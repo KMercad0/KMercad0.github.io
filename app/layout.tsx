@@ -31,9 +31,9 @@ const SITE_URL = 'https://kmercad0.github.io'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: 'KMercado',
+  title: 'Karl Mercado — Software Developer',
   description:
-    'Full-stack developer and CS graduate from UPLB. Building modern, user-focused applications.',
+    'Karl Mercado — software developer in the Philippines, open to remote roles. Full-stack: React, TypeScript, PostgreSQL/Supabase. BS Computer Science, UPLB.',
   keywords:
     'developer, portfolio, software engineer, web development, full-stack, React, Next.js, UPLB',
   alternates: {
@@ -48,9 +48,9 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   openGraph: {
-    title: 'KMercado — Software Developer',
+    title: 'Karl Mercado — Software Developer',
     description:
-      'Full-stack developer and fresh CS graduate from UPLB. Building modern, user-focused applications.',
+      'Karl Mercado — software developer in the Philippines, open to remote roles. Full-stack: React, TypeScript, PostgreSQL/Supabase. BS Computer Science, UPLB.',
     type: 'website',
     locale: 'en_US',
     url: SITE_URL,
@@ -60,14 +60,15 @@ export const metadata: Metadata = {
         url: '/og.png',
         width: 1200,
         height: 630,
-        alt: 'KMercado — Software Developer',
+        alt: 'Karl Mercado — Software Developer',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'KMercado',
-    description: 'Full-stack developer and CS graduate from UPLB.',
+    title: 'Karl Mercado — Software Developer',
+    description:
+      'Software developer in the Philippines, open to remote roles. React, TypeScript, PostgreSQL/Supabase.',
     images: ['/og.png'],
   },
   robots: {
@@ -97,7 +98,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Person',
-              name: 'KMercado',
+              name: 'Karl Mercado',
+              alternateName: 'KMercado',
               url: SITE_URL,
               jobTitle: 'Software Developer',
               alumniOf: {

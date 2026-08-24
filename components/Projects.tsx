@@ -94,10 +94,8 @@ const personal: Project[] = [
     tech: ['Next.js 16', 'React 19', 'TypeScript', 'Supabase', 'PostgreSQL', 'RLS', 'Tailwind'],
     image: '/images/ceer.webp',
     lightOverlay: true,
-    links: [
-      { label: 'VIEW CODE', href: 'https://github.com/KMercad0/CEER' },
-      { label: 'LIVE SITE', href: 'https://uphinay-ceer.vercel.app' },
-    ],
+    private: true,
+    links: [{ label: 'LIVE SITE', href: 'https://uphinay-ceer.vercel.app' }],
     span: 8,
   },
   {
@@ -161,7 +159,7 @@ const personal: Project[] = [
       'Desktop tool batch-watermarking PDFs from CSV. Built for Bicol University ATLAS. Adjustable opacity + density.',
     tech: ['Python', 'PyMuPDF', 'pandas', 'tkinter', 'Pillow'],
     image: '/images/iwasleak.webp',
-    links: [{ label: 'VIEW CODE', href: 'https://github.com/KMercad0/Iwas-Leak' }],
+    links: [{ label: 'VIEW CODE', href: 'https://github.com/KMercad0/pdf-batch-watermarker' }],
     span: 6,
   },
   {
@@ -218,7 +216,7 @@ const academic: Project[] = [
     description: '3D simulation with collision, color, camera controls.',
     tech: ['WebGL', 'JavaScript'],
     image: '/images/161.webp',
-    links: [{ label: 'VIEW CODE', href: 'https://github.com/CMSC161/Project' }],
+    links: [],
     span: 4,
   },
   {

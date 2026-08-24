@@ -19,8 +19,8 @@ type Item = {
 };
 
 const items: Item[] = [
-  { index: '01', label: '// automations', href: '#automations', id: 'automations' },
-  { index: '02', label: '// projects',   href: '#projects',   id: 'projects'   },
+  { index: '01', label: '// projects',    href: '#projects',    id: 'projects'    },
+  { index: '02', label: '// automations', href: '#automations', id: 'automations' },
   { index: '03', label: '// experience', href: '#experience', id: 'experience' },
   { index: '04', label: '// skills',     href: '#skills',     id: 'skills'     },
   { index: '05', label: '// about',      href: '#about',      id: 'about'      },

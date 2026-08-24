@@ -145,14 +145,7 @@ function AutomationCard({
                   transition-colors duration-300 hover:border-primary/50`}
     >
       {/* Poster / play button */}
-      <button
-        type="button"
-        onClick={() => hasVideo && onWatch(item.youTubeId, item.title)}
-        disabled={!hasVideo}
-        aria-label={hasVideo ? `Watch ${item.title} walkthrough` : `${item.title} — walkthrough coming soon`}
-        className="relative block aspect-video w-full overflow-hidden bg-surface-container-highest/60
-                   disabled:cursor-default"
-      >
+      <div className="relative block aspect-video w-full overflow-hidden bg-surface-container-highest/60">
         {item.poster ? (
           <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
@@ -171,25 +164,28 @@ function AutomationCard({
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" aria-hidden="true" />
 
-        {/* Play disc */}
-        <span
-          className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2
-                     items-center justify-center rounded-full border border-primary/60 bg-black/40
-                     text-primary backdrop-blur-sm transition-all duration-300
-                     group-hover:scale-110 group-hover:bg-primary group-hover:text-background"
-        >
-          <PlayIcon className="ml-0.5 h-5 w-5" />
-        </span>
-
-        {!hasVideo && (
+        {/* Play disc — only when there is something to play */}
+        {hasVideo && (
           <span
-            className="absolute bottom-3 left-3 rounded-sm bg-black/60 px-2 py-0.5
-                       font-mono uppercase tracking-[0.14em] text-on-surface-variant text-[0.6rem]"
+            className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2
+                       items-center justify-center rounded-full border border-primary/60 bg-black/40
+                       text-primary backdrop-blur-sm transition-all duration-300
+                       group-hover:scale-110 group-hover:bg-primary group-hover:text-background"
           >
-            Walkthrough soon
+            <PlayIcon className="ml-0.5 h-5 w-5" />
           </span>
         )}
-      </button>
+
+        {/* Click target only exists when there is a video behind it. */}
+        {hasVideo && (
+          <button
+            type="button"
+            onClick={() => onWatch(item.youTubeId, item.title)}
+            aria-label={`Watch ${item.title} walkthrough`}
+            className="absolute inset-0 h-full w-full"
+          />
+        )}
+      </div>
 
       {/* Body */}
       <div className="flex flex-1 flex-col p-5 md:p-6">
@@ -235,16 +231,17 @@ function AutomationCard({
           </div>
 
           <div className="flex flex-wrap gap-5">
-            <button
-              type="button"
-              onClick={() => hasVideo && onWatch(item.youTubeId, item.title)}
-              disabled={!hasVideo}
-              className="group/link inline-flex items-center gap-1.5 font-mono font-semibold uppercase
-                         tracking-[0.16em] text-primary text-[0.7rem] disabled:cursor-not-allowed disabled:text-on-surface-variant/50"
-            >
-              <span>Watch walkthrough</span>
-              <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover/link:translate-x-0.5" />
-            </button>
+            {hasVideo && (
+              <button
+                type="button"
+                onClick={() => onWatch(item.youTubeId, item.title)}
+                className="group/link inline-flex items-center gap-1.5 font-mono font-semibold uppercase
+                           tracking-[0.16em] text-primary text-[0.7rem]"
+              >
+                <span>Watch walkthrough</span>
+                <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover/link:translate-x-0.5" />
+              </button>
+            )}
 
             {item.workflowHref && (
               <a
@@ -298,7 +295,7 @@ export default function Automations() {
             automation builds
           </h2>
           <p className="mt-4 max-w-2xl font-sans leading-relaxed text-on-surface-variant text-sm sm:text-base">
-            Self-built n8n workflows. The importable JSON for each now lives in a public GitHub repo — walkthrough videos to follow.
+            Self-built n8n workflows. The importable JSON for each one is on GitHub — open a card to read the actual node graph.
           </p>
         </m.header>
 

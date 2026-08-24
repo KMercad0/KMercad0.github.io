@@ -67,7 +67,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2, ease: easeOut }}
               className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-primary"
             >
-              // now — making things work
+              // karl mercado · software developer · philippines · open to remote
             </m.p>
 
             <m.h1
@@ -84,9 +84,14 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.55 }}
-              className="mt-5 max-w-md font-sans text-base text-on-surface-variant sm:text-lg"
+              className="mt-5 max-w-xl font-sans text-base text-on-surface-variant sm:text-lg"
             >
-              <p>A human in this AI of a world.</p>
+              <p className="text-on-surface">
+                Karl Mercado — full-stack developer. React, TypeScript, and
+                Postgres/Supabase, with the access rules written into the database.
+                Based in the Philippines, available for remote work.
+              </p>
+              <p className="mt-4">A human in this AI of a world.</p>
               <p className="line-through">I also use it though</p>
             </m.div>
 

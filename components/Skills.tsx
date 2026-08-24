@@ -44,7 +44,10 @@ export default function Skills() {
           <p className="font-mono uppercase tracking-[0.2em] text-primary text-[0.7rem]">
             // skills
           </p>
-
+          <h2 className="mt-3 font-display font-semibold tracking-tight text-on-surface
+                         text-4xl sm:text-5xl md:text-6xl">
+            tools of the trade
+          </h2>
         </m.header>
 
         {/* Categories */}

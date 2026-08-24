@@ -18,11 +18,11 @@ export default function Home() {
       <SplashScreen />
       <Navigation />
       <Hero />
-      <Education />
-      <Automations />
       <Projects />
+      <Automations />
       <Experience />
       <Skills />
+      <Education />
       <About />
       <Cotton />
       <Footer />
