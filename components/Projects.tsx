@@ -210,16 +210,6 @@ const academic: Project[] = [
     span: 4,
   },
   {
-    id: 'webgl-cube',
-    label: 'COURSEWORK',
-    title: 'WebGL Bouncing Cube',
-    description: '3D simulation with collision, color, camera controls.',
-    tech: ['WebGL', 'JavaScript'],
-    image: '/images/161.webp',
-    links: [],
-    span: 4,
-  },
-  {
     id: 'elbi-donation',
     label: 'COURSEWORK',
     title: 'Elbi Donation System',

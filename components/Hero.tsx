@@ -67,7 +67,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2, ease: easeOut }}
               className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-primary"
             >
-              // karl mercado · software developer · philippines · open to remote
+              // karl mercado · software developer · open to remote
             </m.p>
 
             <m.h1
